@@ -1,0 +1,8 @@
+[user]
+	signingkey = 03CBF0F35106697F
+	email = 66316054+morganpa@users.noreply.github.com
+	name = morganpa
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
