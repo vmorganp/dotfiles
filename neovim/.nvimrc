@@ -30,6 +30,7 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'tell-k/vim-autopep8', { 'for': 'python' }
 Plug 'jremmen/vim-ripgrep'
+Plug 'hashivim/vim-terraform'
 
 " Aesthetics
 Plug 'morhetz/gruvbox' " gruvbox
@@ -81,3 +82,19 @@ function! ToggleNERDTree()
   NERDTreeToggle
   silent NERDTreeMirror
 endfunction
+
+" terraform stuff
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+
+
+" Read ~/.NERDTreeBookmarks file and takes its second column
+function! s:nerdtreeBookmarks()
+    let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
+    let bookmarks = bookmarks[0:-2] " Slices an empty last line
+    return map(bookmarks, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_lists = [
+        \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
+        \]
