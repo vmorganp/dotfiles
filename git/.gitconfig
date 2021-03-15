@@ -6,3 +6,5 @@
 	program = gpg
 [commit]
 	gpgsign = true
+[core]
+	excludesfile = ~/.gitignore_global
