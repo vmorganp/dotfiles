@@ -8,7 +8,7 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="my"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -104,12 +104,25 @@ alias cdp="cd /Users/morganpa/Documents/Projects"
 alias cdd="cd /Users/morganpa/Documents/Projects"
 alias vim="nvim"
 alias gdl="git diff HEAD^ HEAD"
+alias git diff="echo 'run gdl to see the diff between current and last commit'; git diff;"
 alias gitundo="git reset --soft HEAD~1"
 alias vimrc="vim ~/.nvimrc"
-alias awscreds="vim ~/.aws/credentials"
+alias awscreds="code ~/.aws/credentials"
+alias tfclean="rm -rf .terraform;rm .terraform.lock.hcl"
+alias awsssoall="cat ~/.aws/config | grep profile | cut -d ' ' -f2 | cut -d ']' -f1 | xargs -n 1 aws sso login --profile"
+alias updatepr="git commit --allow-empty -m \"update pull request\"; git push origin `git branch --show-current`"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
   fi
+}
+
+git() {
+    if [[ $@ == "diff" ]]; then
+        echo 'run gdl to see the diff between current and last commit'
+        command git diff
+    else
+        command git "$@"
+    fi
 }
