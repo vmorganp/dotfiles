@@ -17,7 +17,8 @@ set wildmenu
 set wildmode=longest:full,full
 set whichwrap+=<,>,h,l,[,]
 set nocompatible              " be iMproved, required
-filetype off                  " required
+set mouse=a 
+filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
 " Functional stuff
@@ -31,6 +32,8 @@ Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'tell-k/vim-autopep8', { 'for': 'python' }
 Plug 'jremmen/vim-ripgrep'
 Plug 'hashivim/vim-terraform'
+Plug 'airblade/vim-gitgutter'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Aesthetics
 Plug 'morhetz/gruvbox' " gruvbox
@@ -50,14 +53,16 @@ set termguicolors
 
 let mapleader = "\<Space>"
 " files
-nmap <leader>f :Files <CR>
+nmap <silent>f :Files <CR>
 " Explorer
 nmap <leader>e :call ToggleNERDTree()<CR>  
 " split
 noremap <leader>s :vsp<CR>
-nnoremap <leader>d <C-W><C-L><CR>
-nnoremap <leader>a <C-W><C-H><CR>
-" makme leader number switch to corresponding tab
+nnoremap <leader>d <C-W><C-L>
+nnoremap <leader>a <C-W><C-H>
+nnoremap <leader>ac <nop>
+
+"makme leader number switch to corresponding tab
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
@@ -69,14 +74,19 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
-let NERDTreeMapOpenInTab='<ENTER>'
 command! WQ wq
 command! Wq wq
 command! W w
 command! Q q
+command! QA qa
+command! Qa qa
+
 
 " make python do its thing
 autocmd FileType python setlocal omnifunc=jedi#completions
+
+set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*,*.terraform*
+let NERDTreeRespectWildIgnore=1
 
 function! ToggleNERDTree()
   NERDTreeToggle
@@ -95,6 +105,33 @@ function! s:nerdtreeBookmarks()
     return map(bookmarks, "{'line': v:val, 'path': v:val}")
 endfunction
 
+let g:startify_custom_header =[]
 let g:startify_lists = [
-        \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
+        \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']},
+        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] }
         \]
+function! s:gitModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+" same as above, but show untracked files, honouring .gitignore
+function! s:gitUntracked()
+    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+"autocmd vimenter * if !argc() | NERDTree | endif
+"nnoremap = :call nerdtree#invokeKeyMap("o")<CR>
+"let NERDTreeQuitOnOpen=0
+let NERDTreeShowHidden=1
+autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
+"exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenInTab ." :call <SID>openInNewTab(0)<cr>:NERDTree<cr>"
+autocmd BufWinEnter * NERDTreeMirror
+autocmd VimEnter *
+            \   if !argc()
+            \ |   Startify
+            \ |   NERDTreeToggle
+            \ |   wincmd w
+            \ | endif

@@ -1,5 +1,5 @@
 [user]
-	signingkey = 03CBF0F35106697F
+	signingkey = E0F7EE721B7EBF9E
 	email = 66316054+morganpa@users.noreply.github.com
 	name = morganpa
 [gpg]
@@ -8,3 +8,4 @@
 	gpgsign = true
 [core]
 	excludesfile = ~/.gitignore_global
+
