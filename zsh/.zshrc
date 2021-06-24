@@ -97,6 +97,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+. /usr/local/etc/profile.d/z.sh
 alias tf=terraform
 export GPG_TTY=$(tty)
 alias gpg2=gpg
@@ -109,8 +110,9 @@ alias gitundo="git reset --soft HEAD~1"
 alias vimrc="vim ~/.nvimrc"
 alias awscreds="code ~/.aws/credentials"
 alias tfclean="rm -rf .terraform;rm .terraform.lock.hcl"
+alias tfunlock="terraform force-unlock"
 alias awsssoall="cat ~/.aws/config | grep profile | cut -d ' ' -f2 | cut -d ']' -f1 | xargs -n 1 aws sso login --profile"
-alias updatepr="git commit --allow-empty -m \"update pull request\"; git push origin `git branch --show-current`"
+alias emptycommit="git commit --allow-empty -m \"update pull request (empty commit)\""
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then

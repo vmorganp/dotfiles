@@ -1,10 +1,11 @@
 {
-    	"languageserver": {
+	"languageserver": {
 		"terraform": {
 			"command": "terraform-lsp",
 			"filetypes": [
 				"terraform",
-				"tf"
+				"tf",
+				"tfvars"
 			],
 			"initializationOptions": {},
 			"settings": {}

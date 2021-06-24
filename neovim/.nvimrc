@@ -53,13 +53,17 @@ set termguicolors
 
 let mapleader = "\<Space>"
 " files
-nmap <silent>f :Files <CR>
+nmap <silent>f :Files<CR>
+nmap <leader>t :tabnew<CR>
+"nmap <leader>x :terminal<CR>
 " Explorer
 nmap <leader>e :call ToggleNERDTree()<CR>  
 " split
 noremap <leader>s :vsp<CR>
-nnoremap <leader>d <C-W><C-L>
-nnoremap <leader>a <C-W><C-H>
+nnoremap <leader><Right> <C-W><C-L>
+nnoremap <leader><Left> <C-W><C-H>
+nnoremap <leader><Up> <C-W><C-K>
+nnoremap <leader><Down> <C-W><C-J>
 nnoremap <leader>ac <nop>
 
 "makme leader number switch to corresponding tab
