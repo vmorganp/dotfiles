@@ -116,7 +116,7 @@ alias emptycommit="git commit --allow-empty -m \"update pull request (empty comm
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@%m"
   fi
 }
 
