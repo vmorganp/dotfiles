@@ -1,0 +1,11 @@
+- name: apt upgrade
+  import_playbook: apt_upgrade.yml
+
+- name: apt-get update and upgrade
+  import_playbook: install_my_stuff.yml
+
+- name: apt-get update and upgrade
+  import_playbook: install_my_stuff.yml
+
+- name: update dotfiles
+  import_playbook: update_dotfiles.yml
