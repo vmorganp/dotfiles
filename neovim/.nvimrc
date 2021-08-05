@@ -24,8 +24,9 @@ filetype plugin on
 call plug#begin('~/.vim/plugged')
 " Functional stuff
 Plug 'tpope/vim-fugitive' "fancy git stuff
-Plug 'junegunn/fzf'
+"Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'scrooloose/nerdtree'
 Plug 'mhinz/vim-startify'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }

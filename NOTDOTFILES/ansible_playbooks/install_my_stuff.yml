@@ -1,0 +1,34 @@
+- hosts: "*"
+  become: "yes"
+  tasks:
+    - name: apt
+      apt:
+        state: present
+        update_cache: true
+        name:
+          - curl
+          - docker
+          - docker-compose
+          - git
+          - grep
+          - gnupg2
+          - htop
+          - hub
+          - jq
+          - pinentry-tty
+          - python3
+          - python3-pip
+          - stow
+          - unzip
+          - wget
+          - zip
+          - zsh
+          - fzf
+          - neovim
+      become: true
+
+    - name: Download "z"
+      get_url:
+        url: https://raw.githubusercontent.com/rupa/z/master/z.sh
+        dest: ~/z.sh
+        mode: '0440'
