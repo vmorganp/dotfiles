@@ -19,6 +19,7 @@ set whichwrap+=<,>,h,l,[,]
 set nocompatible              " be iMproved, required
 set mouse=a 
 filetype plugin indent on
+filetype plugin on
 
 call plug#begin('~/.vim/plugged')
 " Functional stuff
@@ -34,6 +35,8 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'hashivim/vim-terraform'
 Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'preservim/nerdcommenter'
 
 " Aesthetics
 Plug 'morhetz/gruvbox' " gruvbox
@@ -65,6 +68,7 @@ nnoremap <leader><Left> <C-W><C-H>
 nnoremap <leader><Up> <C-W><C-K>
 nnoremap <leader><Down> <C-W><C-J>
 nnoremap <leader>ac <nop>
+nnoremap <leader>/ :call NERDComment("n", "Invert")<CR>
 
 "makme leader number switch to corresponding tab
 noremap <leader>1 1gt
@@ -128,7 +132,7 @@ endfunction
 "autocmd vimenter * if !argc() | NERDTree | endif
 "nnoremap = :call nerdtree#invokeKeyMap("o")<CR>
 "let NERDTreeQuitOnOpen=0
-let NERDTreeShowHidden=1
+"let NERDTreeShowHidden=1
 autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTreeToggle | endif
 "exec "nnoremap <silent> <buffer> ". g:NERDTreeMapOpenInTab ." :call <SID>openInNewTab(0)<cr>:NERDTree<cr>"
@@ -136,6 +140,30 @@ autocmd BufWinEnter * NERDTreeMirror
 autocmd VimEnter *
             \   if !argc()
             \ |   Startify
-            \ |   NERDTreeToggle
-            \ |   wincmd w
+"            \ |   NERDTreeToggle
+"            \ |   wincmd w
             \ | endif
+" show whitespace 
+":set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+":set list
+let g:indent_guides_enable_on_vim_startup = 1
+set foldmethod=indent
+set foldlevel=1
+set foldclose=all
+
+let g:NERDCreateDefaultMappings = 0 
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+
+nnoremap qq :q<CR>
+nnoremap ww :w<CR>

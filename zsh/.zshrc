@@ -128,3 +128,14 @@ git() {
         command git "$@"
     fi
 }
+
+
+#determines search program for fzf
+if type ag &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
+fi
+#refer rg over ag
+if type rg &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files --hidden'
+fi
+
