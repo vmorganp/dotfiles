@@ -150,7 +150,7 @@ autocmd VimEnter *
 let g:indent_guides_enable_on_vim_startup = 1
 set foldmethod=indent
 set foldlevel=1
-set foldclose=all
+"set foldclose=all
 
 let g:NERDCreateDefaultMappings = 0 
 " " Copy to clipboard

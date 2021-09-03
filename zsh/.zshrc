@@ -113,11 +113,18 @@ alias tfclean="rm -rf .terraform;rm .terraform.lock.hcl"
 alias tfunlock="terraform force-unlock"
 alias awsssoall="cat ~/.aws/config | grep profile | cut -d ' ' -f2 | cut -d ']' -f1 | xargs -n 1 aws sso login --profile"
 alias emptycommit="git commit --allow-empty -m \"update pull request (empty commit)\""
+alias greset="git reset --hard remotes/origin/master; git checkout master; git reset --hard remotes/origin/master; git pull"
+
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+DEFAULT_USER="morganpa"
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@%m"
   fi
+}
+
+prompt_dir() {
+    prompt_segment blue black '%4~'
 }
 
 git() {
