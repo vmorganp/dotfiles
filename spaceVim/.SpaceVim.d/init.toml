@@ -11,14 +11,15 @@
     # set spacevim theme. by default colorscheme layer is not loaded,
     # if you want to use more colorscheme, please load the colorscheme
     # layer
-    colorscheme = "gruvbox"
+    # colorscheme = "gruvbox"
+    colorscheme = "one"
     colorscheme_bg = "dark"
     # Disable guicolors in basic mode, many terminal do not support 24bit
     # true colors
     enable_guicolors = false
     # Disable statusline separator, if you want to use other value, please
     # install nerd fonts
-    statusline_separator = "nil"
+    statusline_separator = "arrow"
     statusline_iseparator = "bar"
     buffer_index_type = 4
     windows_index_type = 3
@@ -38,9 +39,11 @@ auto_completion_tab_key_behavior = "cycle"
 
 [[layers]]
 name = 'shell'
-default_position = 'top'
+default_position = 'bottom'
 default_height = 30
 
+[[layers]]
+  name="colorscheme"
 
 
 # Fuzzy Find Settings
@@ -58,3 +61,16 @@ default_height = 30
 [[layers]]
   name = "git"
   git_plugin = "fugitive"
+
+# Languages
+[[custom_plugins]]
+  repo = "https://github.com/hashivim/vim-terraform"
+  merged = 0
+
+[[layers]]
+  name = "lang#python"
+
+# LSP
+[[layers]]
+  name = 'lsp'
+  enabled_clients = ['pyright']
