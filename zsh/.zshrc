@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -97,12 +97,13 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-. /usr/local/etc/profile.d/z.sh
+. ~/z.sh
 alias tf=terraform
+alias docker=podman
 export GPG_TTY=$(tty)
 alias gpg2=gpg
-alias cdp="cd /Users/morganpa/Documents/Projects"
-alias cdd="cd /Users/morganpa/Documents/Projects"
+alias cdp="cd ~/Documents/Projects"
+alias cdd="cd ~/Documents"
 alias vim="nvim"
 alias gdl="git diff HEAD^ HEAD"
 alias git diff="echo 'run gdl to see the diff between current and last commit'; git diff;"
@@ -145,4 +146,5 @@ fi
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden'
 fi
+
 

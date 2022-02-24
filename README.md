@@ -1,5 +1,8 @@
 # Dotfiles
-to see the cheatsheet, look in /NOTDOTFILES/cheatsheet
+To install with stow, run from ~ 
+```
+stow -d ~/dotfiles -t ~ <thing you want>
+```
 
 to set all of this up, run
 ```

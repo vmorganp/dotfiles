@@ -61,13 +61,13 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  decorations: none
+  decorations: full
 
   # Background opacity
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.85
+opacity: 0.85
 
   # Startup Mode (changes require restart)
   #
@@ -389,7 +389,7 @@ shell:
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-working_directory: /Users/morganpa/Documents/Projects/
+working_directory: ~/Documents/Projects
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
