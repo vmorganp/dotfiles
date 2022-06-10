@@ -99,7 +99,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 . ~/z.sh
 alias tf=terraform
-alias docker=podman
 export GPG_TTY=$(tty)
 alias gpg2=gpg
 alias cdp="cd ~/Documents/Projects"
@@ -114,13 +113,17 @@ alias tfclean="rm -rf .terraform;rm .terraform.lock.hcl"
 alias tfunlock="terraform force-unlock"
 alias awsssoall="cat ~/.aws/config | grep profile | cut -d ' ' -f2 | cut -d ']' -f1 | xargs -n 1 aws sso login --profile"
 alias emptycommit="git commit --allow-empty -m \"update pull request (empty commit)\""
-alias greset="git reset --hard remotes/origin/master; git checkout master; git reset --hard remotes/origin/master; git pull"
+alias greset="git reset --hard remotes/origin/main; git checkout main; git reset --hard remotes/origin/main; git pull"
+alias acl="clear"
+
+alias lg="lazygit"
+alias venvactivate="source .venv/bin/activate"
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-DEFAULT_USER="morganpa"
+DEFAULT_USER="morgan"
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@%m"
+    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
   fi
 }
 
@@ -147,4 +150,5 @@ if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden'
 fi
 
-
+PS1="$PS1 
+> "
