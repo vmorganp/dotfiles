@@ -1,0 +1,10 @@
+{
+    "editor.fontFamily": "'SauceCodePro Nerd Font', 'monospace', monospace",
+    "editor.fontSize": 20,
+    "editor.renderWhitespace": "all",
+    "editor.minimap.enabled": false,
+    "window.zoomLevel": 1,
+    "workbench.tree.indent": 15,
+    "workbench.sideBar.location": "right",
+    "workbench.activityBar.visible": false
+}
