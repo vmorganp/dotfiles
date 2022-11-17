@@ -1,0 +1,48 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+palette = "gruvbox"
+
+[directory]
+style = "bg:blue"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+truncate_to_repo = true
+
+[git_branch]
+format = "[ $symbol$branch(:$remote_branch) ]($style)"
+truncation_length = 10
+truncation_symbol = ""
+style = "bg:purple"
+
+[git_status]
+
+format = '($all_status$ahead_behind)'
+conflicted = "[\\[CNFLCT\\]](bg:yellow)"
+ahead = "[\\[AHEAD ${count}\\]](bg:yellow)"
+behind = "[\\[BEHIND ${count}\\]](bg:yellow)"
+diverged = "[DVRGD ${ahead_count}⇣${behind_count}](bg:yellow)"
+up_to_date = "[\\[UP2DT\\]](bg:green)"
+untracked = "[\\[UNTRCKD\\]](bg:red)"
+stashed = "[\\[STSHD\\]](bg:yellow)"
+modified = "[\\[CHGD\\]](bg:yellow)"
+staged = '[\\[++\($count\)\\]](bg:green)'
+renamed = "[\\[RNMD\\]](bg:yellow)"
+deleted = "[\\[DLTD\\]](bg:yellow)"
+
+
+
+# the aws module should be able to check if credentials are valid or not
+# unfortunately it doesn't 
+[aws]
+disabled = true
+
+[python]
+format = "[$symbol(via $virtualenv)]($style)"
+style = "bold bg:orange"
+
+
+# Define custom colors
+[palettes.gruvbox]
+# Overwrite existing color
+orange="#d65d0e"
