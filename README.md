@@ -1,11 +1,10 @@
 # Dotfiles
-To install with stow, run from ~ 
+To install with stow, run:
 ```
 stow -d ~/dotfiles -t ~ <thing you want>
 ```
 
-to set all of this up, run
+To uninstall with stow, run:
 ```
-ansible-playbook ./all_others.yml --user $USER --ask-pass --ask-become-pass --connection=local --inventory 127.0.0.1,
-
+stow -d ~/dotfiles -D <thing you don't want>
 ```
