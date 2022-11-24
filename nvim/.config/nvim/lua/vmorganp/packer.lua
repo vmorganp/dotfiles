@@ -15,8 +15,22 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        'nvim-telescope/telescope.nvim', 
+        tag = '0.1.0',
+        requires = { {'nvim-lua/plenary.nvim'} },
+        config = function()
+            --local telescope = require('telescope')
+            require ("telescope").setup {
+                defaults = {
+                    file_ignore_patterns = { ".git", "node_modules"}
+                },
+                pickers = {
+                    find_files = {
+                        hidden = true
+                    }
+                }
+            }
+        end
     }
 
     use {
@@ -36,11 +50,29 @@ return require('packer').startup(function(use)
         'nvim-tree/nvim-tree.lua',
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
-        }
+        },
+        config = function()
+            require("nvim-tree").setup()
+        end
     }
 
     -- colors
-    use { "ellisonleao/gruvbox.nvim" }
+    use {
+        'tanvirtin/monokai.nvim',
+        config = function()
+            require('monokai').setup {
+                palette = require('monokai').pro
+            }
+        end
+    }
+    -- use {
+    --     "ellisonleao/gruvbox.nvim",
+    --     config = function()
+    --         require("gruvbox").setup()
+    --         vim.o.background = "dark" -- or "light" for light mode
+    --         vim.cmd([[colorscheme gruvbox]])
+    --     end
+    -- }
 
     -- lsp
     use "neovim/nvim-lspconfig"
