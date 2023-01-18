@@ -3,6 +3,7 @@ vim.opt.tabstop = 4 -- tab = 4 spaces
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true -- always use spaces instead of tabs
+vim.opt.showtabline=2 -- always show the tab line 
 
 -- basics
 -- vim.keymap.set('n', '<leader>qq', '<cmd>:q<CR>', {desc="quit vim"})

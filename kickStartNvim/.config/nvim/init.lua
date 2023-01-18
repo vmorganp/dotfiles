@@ -187,7 +187,13 @@ require('gitsigns').setup {
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
+  pickers = {
+    find_files = {
+      hidden = true
+    }
+  },
   defaults = {
+    file_ignore_patterns = {".git/", "node_modules", "venv"},
     mappings = {
       i = {
         ['<C-u>'] = false,
