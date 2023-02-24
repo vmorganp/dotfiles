@@ -28,15 +28,15 @@ vim.keymap.set('n', '<leader>Tn', '<cmd>:set number!<CR>', {desc="toggle line nu
 -- tabs
 vim.keymap.set('n', '<leader>tc', '<cmd>:tabnew<CR>', {desc="create tab"})
 vim.keymap.set('n', '<leader>td', '<cmd>:tabclose<CR>', {desc="close tab"})
-vim.keymap.set('n', '<leader>th', '<cmd>:tabprevious<CR>', {desc="tab left"})
-vim.keymap.set('n', '<leader>tl', '<cmd>:tabnext<CR>', {desc="tab next"})
+vim.keymap.set('n', '<leader>tm', '<cmd>:tabprevious<CR>', {desc="tab left"})
+vim.keymap.set('n', '<leader>ti', '<cmd>:tabnext<CR>', {desc="tab next"})
 
 -- windows
-vim.keymap.set('n', '<leader>wj', '<C-w>j', {desc="window down"})
-vim.keymap.set('n', '<leader>wk', '<C-w>k', {desc="window up"})
-vim.keymap.set('n', '<leader>wl', '<C-w>l', {desc="window right"})
-vim.keymap.set('n', '<leader>wh', '<C-w>h', {desc="window left"})
-vim.keymap.set('n', '<leader>wm', '<cmd>:only<CR>', {desc="window maximize"})
+vim.keymap.set('n', '<leader>wn', '<C-w>j', {desc="window down"})
+vim.keymap.set('n', '<leader>we', '<C-w>k', {desc="window up"})
+vim.keymap.set('n', '<leader>wi', '<C-w>l', {desc="window right"})
+vim.keymap.set('n', '<leader>wm', '<C-w>h', {desc="window left"})
+vim.keymap.set('n', '<leader>wM', '<cmd>:only<CR>', {desc="window maximize"})
 
 -- buffers
 vim.keymap.set('n', '<leader>bk', '<cmd>:q<CR>', {desc="buffer kill"})

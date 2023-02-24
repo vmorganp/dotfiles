@@ -29,5 +29,11 @@ return function(use)
             require"startup".setup()
         end
     }
+
+    -- require'lspconfig'.terraformls.setup{}
+    -- vim.api.nvim_create_autocmd({"BufWritePre"}, {
+    --     pattern = {"*.tf", "*.tfvars"},
+    --     callback = vim.lsp.buf.format(),
+    -- })
 end
 
