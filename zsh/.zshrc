@@ -1,6 +1,14 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+plugins=(
+    git 
+    fancy-ctrl-z 
+    gh
+    aws
+
+)
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -30,6 +38,7 @@ alias venvactivate="source .venv/bin/activate"
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+source "$HOME/.cargo/env"
 DEFAULT_USER="morgan"
 
 #determines search program for fzf
