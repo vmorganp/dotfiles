@@ -1,0 +1,15 @@
+[user]
+        email = 100230514+MorganPattersonSignet@users.noreply.github.com
+        name = MorganPatteronSignet
+        signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILV5Sdvy+J/weOy6AsBBZDENQZKlG2JkHv8IhWOBlvoa 100230514+MorganPattersonSignet
+
+[includeIf "gitdir:~/Documents/personal/"]
+    path = .gitconfig-personal
+
+[includeIf "gitdir:~/dotfiles/"]
+    path = .gitconfig-personal
+
+[commit]
+        gpgsign = true
+[gpg]
+        format = ssh
