@@ -1,9 +1,9 @@
 # Don't print a new line at the start of the prompt
 add_newline = false
-palette = "gruvbox"
+# palette = "gruvbox"
 
 [directory]
-style = "bg:blue"
+style = "bg:blue fg:black"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -13,22 +13,22 @@ truncate_to_repo = true
 format = "[ $symbol$branch(:$remote_branch) ]($style)"
 truncation_length = 10
 truncation_symbol = ""
-style = "bg:purple"
+style = "bg:purple fg:black"
 
 [git_status]
 
 format = '($all_status$ahead_behind)'
-conflicted = "[\\[CNFLCT\\]](bg:yellow)"
-ahead = "[\\[AHEAD ${count}\\]](bg:yellow)"
-behind = "[\\[BEHIND ${count}\\]](bg:yellow)"
-diverged = "[DVRGD ${ahead_count}⇣${behind_count}](bg:yellow)"
-up_to_date = "[\\[UP2DT\\]](bg:green)"
-untracked = "[\\[UNTRCKD\\]](bg:red)"
-stashed = "[\\[STSHD\\]](bg:yellow)"
-modified = "[\\[CHGD\\]](bg:yellow)"
-staged = '[\\[++\($count\)\\]](bg:green)'
-renamed = "[\\[RNMD\\]](bg:yellow)"
-deleted = "[\\[DLTD\\]](bg:yellow)"
+conflicted = "[\\[CNFLCT\\]](bg:yellow fg:black)"
+ahead = "[\\[AHEAD ${count}\\]](bg:yellow fg:black)"
+behind = "[\\[BEHIND ${count}\\]](bg:yellow fg:black)"
+diverged = "[DVRGD ${ahead_count}⇣${behind_count}](bg:yellow fg:black)"
+up_to_date = "[\\[UP2DT\\]](bg:green fg:black)"
+untracked = "[\\[UNTRCKD\\]](bg:red fg:black)"
+stashed = "[\\[STSHD\\]](bg:yellow fg:black)"
+modified = "[\\[CHGD\\]](bg:yellow fg:black)"
+staged = '[\\[++\($count\)\\]](bg:green fg:black)'
+renamed = "[\\[RNMD\\]](bg:yellow fg:black)"
+deleted = "[\\[DLTD\\]](bg:yellow fg:black)"
 
 
 
@@ -43,6 +43,6 @@ style = "bold bg:orange"
 
 
 # Define custom colors
-[palettes.gruvbox]
+# [palettes.gruvbox]
 # Overwrite existing color
-orange="#d65d0e"
+# orange="#d65d0e"
