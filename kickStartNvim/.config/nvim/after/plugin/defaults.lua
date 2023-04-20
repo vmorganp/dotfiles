@@ -1,31 +1,36 @@
-vim.opt.relativenumber = false
-vim.opt.tabstop = 4 -- tab = 4 spaces
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.expandtab = true -- always use spaces instead of tabs
-vim.opt.showtabline = 2  -- always show the tab line
-vim.opt.cursorline = true
-vim.opt.foldmethod = "indent"
-vim.opt.foldlevelstart = 99
+vim.o.relativenumber = false
+vim.o.tabstop = 4 -- tab = 4 spaces
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.expandtab = true -- always use spaces instead of tabs
+vim.o.showtabline = 1  -- always show the tab line
+vim.o.cursorline = true
 
-vim.opt.hlsearch = false -- only highlight current instance when searching
-vim.opt.showmatch = true -- bracket matching
-vim.opt.wildmenu = true
-vim.opt.wildmode = "longest:full,full"
-vim.opt.smartindent = true
-vim.opt.wrap = false
-vim.opt.title = true         -- window titles
-vim.opt.showtabline = 2      -- always show the tab bar
-vim.opt.scrolloff = 10       -- keep n lines above and below the cursor
-vim.opt.sidescrolloff = 10   -- keep n lines right and left of the cursor
-vim.opt.signcolumn = "yes:1" -- the "git gutter"
-vim.opt.mouse = "a"
+vim.o.foldmethod = "indent"
+vim.o.foldenable = true
+vim.o.foldlevelstart = 99
+-- vim.o.foldcolumn = '1'
 
-vim.opt.list = true
+vim.o.hlsearch = false -- only highlight current instance when searching
+vim.o.showmatch = true -- bracket matching
+vim.o.wildmenu = true
+vim.o.wildmode = "longest:full,full"
+vim.o.smartindent = true
+vim.o.wrap = false
+vim.o.title = true         -- window titles
+vim.o.showtabline = 2      -- always show the tab bar
+vim.o.scrolloff = 10       -- keep n lines above and below the cursor
+vim.o.sidescrolloff = 10   -- keep n lines right and left of the cursor
+vim.o.signcolumn = "yes:1" -- the "git gutter"
+vim.o.mouse = "a"
+
+vim.o.list = true
+
 
 -- basics
 -- vim.keymap.set('n', '<leader>qq', '<cmd>:q<CR>', {desc="quit vim"})
 vim.keymap.set('n', '<leader>fs', '<cmd>:w<CR>', { desc = "file save" })
+vim.keymap.set('n', '<leader>ff', '<cmd>:Format<CR>', { desc = "file format" })
 
 -- telescope stuffs
 vim.keymap.set('n', '<leader>sc', require('telescope.builtin').commands, { desc = '[S]earch [C]ommands' })
@@ -45,19 +50,19 @@ vim.keymap.set('n', '<leader>Tn', '<cmd>:set number!<CR>', { desc = "toggle line
 -- tabs
 vim.keymap.set('n', '<leader>tc', '<cmd>:tabnew<CR>', { desc = "create tab" })
 vim.keymap.set('n', '<leader>td', '<cmd>:tabclose<CR>', { desc = "close tab" })
-vim.keymap.set('n', '<leader>tm', '<cmd>:tabprevious<CR>', { desc = "tab left" })
-vim.keymap.set('n', '<leader>ti', '<cmd>:tabnext<CR>', { desc = "tab next" })
-vim.keymap.set('n', '<leader>tl', '<cmd>:tabprevious<CR>', { desc = "tab last" })
+vim.keymap.set('n', '<leader>th', '<cmd>:tabprevious<CR>', { desc = "tab left" })
+vim.keymap.set('n', '<leader>tl', '<cmd>:tabnext<CR>', { desc = "tab next" })
 vim.keymap.set('n', '<leader>tn', '<cmd>:tabnext<CR>', { desc = "tab next" })
+
 -- windows
-vim.keymap.set('n', '<leader>wn', '<C-w>j', { desc = "window down" })
-vim.keymap.set('n', '<leader>we', '<C-w>k', { desc = "window up" })
-vim.keymap.set('n', '<leader>wi', '<C-w>l', { desc = "window right" })
-vim.keymap.set('n', '<leader>wm', '<C-w>h', { desc = "window left" })
+vim.keymap.set('n', '<leader>wj', '<C-w>j', { desc = "window down" })
+vim.keymap.set('n', '<leader>wk', '<C-w>k', { desc = "window up" })
+vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = "window right" })
+vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = "window left" })
 vim.keymap.set('n', '<leader>wM', '<cmd>:only<CR>', { desc = "window maximize" })
 
 -- buffers
-vim.keymap.set('n', '<leader>bk', '<cmd>:q<CR>', { desc = "buffer kill" })
+vim.keymap.set('n', '<leader>bk', '<cmd>:confirm q<CR>', { desc = "buffer kill" })
 vim.keymap.set('n', '<leader>bn', '<cmd>:bnext<CR>', { desc = "buffer next" })
 vim.keymap.set('n', '<leader>bl', '<cmd>:bprev<CR>', { desc = "buffer last" })
 vim.keymap.set('n', '<leader>be', '<cmd>:enew!<CR>', { desc = "buffer empty" })
