@@ -35,6 +35,7 @@ alias greset="git reset --hard remotes/origin/main; git checkout main; git reset
 alias acl="clear"
 alias lg="lazygit"
 alias venvactivate="source .venv/bin/activate"
+alias tmux="tmux -2"
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
