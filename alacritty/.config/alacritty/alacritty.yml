@@ -124,7 +124,7 @@ schemes:
       cyan: "#00ecd8"
       white: "#fdf7cd"
 
-colors: *blackbird
+colors: *tokyo-night
 cursor:
   style:
     shape: Beam

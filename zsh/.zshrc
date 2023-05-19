@@ -39,6 +39,7 @@ alias tmux="tmux -2"
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin"
 source "$HOME/.cargo/env"
 DEFAULT_USER="morgan"
 
