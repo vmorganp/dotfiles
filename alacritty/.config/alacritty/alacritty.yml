@@ -3,7 +3,7 @@ window:
     x: 10
     y: 10
   decorations: full
-# opacity: 0.85
+  opacity: 0.75
 
 scrolling:
   history: 10000
