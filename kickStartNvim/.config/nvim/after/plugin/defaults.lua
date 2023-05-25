@@ -17,6 +17,7 @@ vim.o.wildmenu = true
 vim.o.wildmode = "longest:full,full"
 vim.o.smartindent = true
 vim.o.wrap = false
+vim.o.linebreak = true
 vim.o.title = true         -- window titles
 vim.o.showtabline = 2      -- always show the tab bar
 vim.o.scrolloff = 10       -- keep n lines above and below the cursor
@@ -70,3 +71,10 @@ vim.keymap.set('n', '<leader>be', '<cmd>:enew!<CR>', { desc = "buffer empty" })
 -- binds
 vim.keymap.set('n', '<leader>gg', '<cmd>:Git<CR>', { desc = "git" })
 vim.keymap.set('n', '<leader>ot', '<cmd>:NvimTreeToggle<CR>', { desc = "Toggle File Tree" })
+
+-- autocmds
+-- auto fix whitespace
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})
