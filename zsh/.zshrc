@@ -2,8 +2,8 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 plugins=(
-    git 
-    fancy-ctrl-z 
+    git
+    fancy-ctrl-z
     gh
     aws
 
@@ -36,6 +36,7 @@ alias acl="clear"
 alias lg="lazygit"
 alias venvactivate="source .venv/bin/activate"
 alias tmux="tmux -2"
+alias v="nvim"
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
