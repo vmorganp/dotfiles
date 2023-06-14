@@ -9,11 +9,11 @@ scrolling:
   history: 10000
 font:
   normal:
-    family: SauceCodePro Nerd Font 
+    family: SauceCodePro Nerd Font
     style: Regular
   size: 15.0
 draw_bold_text_with_bright_colors: false
-schemes: 
+schemes:
   gruvbox: &gruvbox
     colors:
       primary:

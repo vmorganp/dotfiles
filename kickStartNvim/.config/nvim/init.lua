@@ -265,6 +265,13 @@ require('telescope').setup {
     }
   },
   defaults = {
+    layout_strategy = "vertical",
+    layout_config = {
+      vertical = {
+        prompt_position = "top",
+        mirror = true
+      },
+    },
     file_ignore_patterns = {".git/", "node_modules", "venv"},
     mappings = {
       i = {
