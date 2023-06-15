@@ -42,6 +42,7 @@ vim.keymap.set('n', '<leader>sp', require('telescope.builtin').quickfix, { desc 
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = "search help documents" })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = "search dir" })
 vim.keymap.set('n', '<leader>sm', require('telescope.builtin').marks, { desc = "search marks" })
+vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = "search resume" })
 vim.keymap.set('n', '<leader>st', '<cmd>:tabs<CR>', { desc = "search tabs" })
 
 -- toggles
