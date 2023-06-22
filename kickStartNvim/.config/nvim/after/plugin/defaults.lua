@@ -11,7 +11,7 @@ vim.o.foldenable = true
 vim.o.foldlevelstart = 99
 -- vim.o.foldcolumn = '1'
 
-vim.o.hlsearch = false -- only highlight current instance when searching
+vim.o.hlsearch = true -- only highlight current instance when searching
 vim.o.showmatch = true -- bracket matching
 vim.o.wildmenu = true
 vim.o.wildmode = "longest:full,full"
