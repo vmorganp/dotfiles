@@ -40,7 +40,7 @@ alias v="nvim"
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 source "$HOME/.cargo/env"
 DEFAULT_USER="morgan"
 
