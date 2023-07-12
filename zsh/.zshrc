@@ -22,6 +22,7 @@ alias gpg2=gpg
 alias cdp="cd ~/Documents/Projects"
 alias cdd="cd ~/Documents"
 alias vim="nvim"
+alias nvd="neovide --multigrid"
 alias gdl="git diff HEAD^ HEAD"
 alias git diff="echo 'run gdl to see the diff between current and last commit'; git diff;"
 alias gitundo="git reset --soft HEAD~1"
