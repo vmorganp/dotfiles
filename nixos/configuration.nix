@@ -135,6 +135,7 @@
       starship # Terminal accessories
       gimp # image editor
       flameshot # screenshot
+      ansible
     ];
   };
 
