@@ -1,0 +1,11 @@
+[user]
+    email = 31448722+vmorganp@users.noreply.github.com
+    name = vmorganp
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHMTD1ZOJPAfhyqB35zwx7pD5DbW0CsNa23Zj7gbzi2C 31448722+vmorganp@users.noreply.github.com
+
+[commit]
+        gpgsign = true
+[gpg]
+        format = ssh
+[core]
+	excludesfile = ~/.gitignore

@@ -6,16 +6,15 @@ plugins=(
     fancy-ctrl-z
     gh
     aws
-
 )
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 HIST_STAMPS="mm/dd/yyyy"
 
 # Aliases
-. ~/z.sh
+# . ~/z.sh
 alias tf=terraform
 export GPG_TTY=$(tty)
 alias gpg2=gpg
@@ -42,7 +41,7 @@ alias v="nvim"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
-source "$HOME/.cargo/env"
+# source "$HOME/.cargo/env"
 DEFAULT_USER="morgan"
 
 #determines search program for fzf
