@@ -178,7 +178,7 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # find the class using `xprop`
-assign [class="firefox"] $ws1
+# assign [class="firefox"] $ws1
 assign [class="Spotify"] $ws4
 
 # reload the configuration file
@@ -218,9 +218,9 @@ bindsym $mod+r mode "resize"
 
 exec --no-startup-id "xrandr --output HDMI-1 --mode 2560x1080 --rotate normal --pos 0x300 --output DP-0 --mode 2560x1440 --rotate normal --primary --pos 2560x0 --output HDMI-0 --mode 1920x1080 --rotate right --pos 5120x0"
 # exec_always --no-startup-id ~/polybar.sh
-exec_always --no-startup-id compton
-exec_always --no-startup-id sleep .3 nitrogen --restore
-exec_always --no-startup-id xfce4-panel -r
+exec_always --no-startup-id "compton"
+exec_always --no-startup-id "sleep 1; nitrogen --restore"
+exec_always --no-startup-id "xfce4-panel"
 
 # custom app keybinds
 bindsym $mod+b exec firefox -new-window

@@ -83,7 +83,7 @@
 	enableXfwm = false;
       };
     };
-    displayManager.defaultSession = "xfce";
+    displayManager.defaultSession = "xfce+i3";
     windowManager.i3.enable = true;
   };
 
@@ -176,6 +176,8 @@
       nitrogen
       pkgs.xfce.xfce4-panel
       pkgs.xfce.xfce4-i3-workspaces-plugin
+      pkgs.xfce.xfce4-pulseaudio-plugin
+      pulseaudio
       compton
       playerctl
       gcc
