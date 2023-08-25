@@ -136,6 +136,7 @@
       gimp # image editor
       flameshot # screenshot
       ansible
+      neovide # a neovim client that is entirely non-essential but very slick
     ];
   };
 
