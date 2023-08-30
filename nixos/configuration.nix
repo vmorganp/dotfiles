@@ -169,24 +169,31 @@
 # List packages installed in system profile. To search, run:
 # $ nix search wget
   environment.systemPackages = with pkgs; [
-      git
-      neovim
-      stow
-      polybar
-      rofi
-      nitrogen
-      pkgs.xfce.xfce4-panel
-      pkgs.xfce.xfce4-i3-workspaces-plugin
-      pkgs.xfce.xfce4-pulseaudio-plugin
-      pulseaudio
-      compton
-      playerctl
-      gcc
-      gnumake
-      nodejs-18_x
-      rustup
+# Destkop stuff
+      pkgs.xfce.xfce4-panel # desktop stuff
+      pkgs.xfce.xfce4-i3-workspaces-plugin # desktop stuff
+      pkgs.xfce.xfce4-pulseaudio-plugin # desktop stuff
+      rofi # run launcher
+      nitrogen # wallpaper setup
+      pulseaudio # audio
+      compton # transparency
+      playerctl # media control
+      i3 # window manager
+
+# General Utils
+      neovim # editor
+      stow # dotfiles handler
       ripgrep
-      i3
+      findutils # locate, out, and info
+
+# programming utils
+      rustup # rust programming language
+      gcc # c compiler
+      git
+      gnumake # make support
+      nodejs-18_x
+      (python310.withPackages(ps: with ps; [ boto3 botocore pip]))
+      virtualenv # python tooling
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
