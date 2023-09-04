@@ -14,7 +14,7 @@ export ZSH=$HOME/.oh-my-zsh
 HIST_STAMPS="mm/dd/yyyy"
 
 # Aliases
-# . ~/z.sh
+. ~/z.sh
 alias tf=terraform
 export GPG_TTY=$(tty)
 alias gpg2=gpg
