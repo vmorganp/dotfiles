@@ -128,20 +128,28 @@
     extraGroups = [ "networkmanager" "wheel" "docker"];
     shell = pkgs.zsh;
     packages = with pkgs; [
+      # aPpLiCaTiOnS
       # firefox # browser
       librewolf # browser
       keepassxc # ssh key password manager
-      syncthing # file sync
       spotify # music
+      obsidian # proprietary notes app but I really like it, should probably take a look at logseq
+
+      # Chatty things
+      telegram-desktop
+      signal-desktop
+      discord
+
+      # Nerd tools
       alacritty # terminal
       tmux # Terminal accessories
       oh-my-zsh # Terminal accessories
       starship # Terminal accessories
       gimp # image editor
       flameshot # screenshot
-      obsidian # proprietary notes app but I really like it, should probably take a look at logseq
       ansible
       neovide # a neovim client that is entirely non-essential but very slick
+      syncthing # file sync
     ];
   };
 
