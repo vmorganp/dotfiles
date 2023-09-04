@@ -205,12 +205,14 @@
 
 # programming utils
       rustup # rust programming language
+      go # go programming language
       gcc # c compiler
       git
       gnumake # make support
       nodejs-18_x
       (python310.withPackages(ps: with ps; [ boto3 botocore pip]))
       virtualenv # python tooling
+      gh # github tools, enables stuff like `gh checkout pr 42`
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
