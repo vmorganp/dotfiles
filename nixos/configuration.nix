@@ -98,6 +98,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Docker things
+  virtualisation.docker.enable = true;
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -122,10 +125,11 @@
   users.users.morgan = {
     isNormalUser = true;
     description = "morgan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker"];
     shell = pkgs.zsh;
     packages = with pkgs; [
-      firefox # browser
+      # firefox # browser
+      librewolf # browser
       keepassxc # ssh key password manager
       syncthing # file sync
       spotify # music
@@ -135,6 +139,7 @@
       starship # Terminal accessories
       gimp # image editor
       flameshot # screenshot
+      obsidian # proprietary notes app but I really like it, should probably take a look at logseq
       ansible
       neovide # a neovim client that is entirely non-essential but very slick
     ];
@@ -185,6 +190,9 @@
       stow # dotfiles handler
       ripgrep
       findutils # locate, out, and info
+      wget # download stuff
+      docker-compose
+      htop # process viewer
 
 # programming utils
       rustup # rust programming language

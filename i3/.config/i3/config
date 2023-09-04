@@ -223,7 +223,7 @@ exec_always --no-startup-id "sleep 1; nitrogen --restore"
 exec_always --no-startup-id "xfce4-panel"
 
 # custom app keybinds
-bindsym $mod+b exec firefox -new-window
+bindsym $mod+b exec librewolf -new-window
 bindsym $mod+m exec spotify
 bindsym $mod+g exec firefox https://github.com/trending
 bindsym $mod+Shift+s exec flameshot gui
