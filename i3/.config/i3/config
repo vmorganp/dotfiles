@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 set $monitor_left "HDMI-1"
 set $monitor_right "HDMI-0"
 set $monitor_middle "DP-0"
@@ -222,9 +223,13 @@ exec --no-startup-id "xrandr --output HDMI-1 --mode 2560x1080 --rotate normal --
 exec_always --no-startup-id "compton"
 exec_always --no-startup-id "sleep 1; nitrogen --restore"
 exec_always --no-startup-id "xfce4-panel"
+exec_always --no-startup-id "copyq"
 
 # custom app keybinds
 bindsym $mod+b exec librewolf -new-window
 bindsym $mod+m exec spotify
-bindsym $mod+g exec firefox https://github.com/trending
+bindsym $mod+g exec librewolf https://github.com/trending
 bindsym $mod+Shift+s exec flameshot gui
+
+# Clipboard manager
+bindsym $alt+v exec --no-startup-id "copyq menu"

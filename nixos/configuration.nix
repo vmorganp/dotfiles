@@ -192,6 +192,7 @@
       compton # transparency
       playerctl # media control
       i3 # window manager
+      copyq
 
 # General Utils
       neovim # editor
