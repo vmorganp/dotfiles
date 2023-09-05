@@ -74,6 +74,7 @@ vim.keymap.set('n', '<leader>bo', '<cmd>:%bd|e#|bd#<CR>', { desc = "buffer only 
 
 -- binds
 vim.keymap.set('n', '<leader>gg', '<cmd>:Git<CR>', { desc = "git" })
+vim.keymap.set('n', '<leader>gb', '<cmd>:Git blame<CR>', { desc = "git" })
 vim.keymap.set('n', '<leader>ot', '<cmd>:NvimTreeToggle<CR>', { desc = "Toggle File Tree" })
 
 -- autocmds
