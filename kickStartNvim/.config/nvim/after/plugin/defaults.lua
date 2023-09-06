@@ -31,9 +31,12 @@ vim.o.list = true
 -- vim.keymap.set('n', '<leader>qq', '<cmd>:q<CR>', {desc="quit vim"})
 vim.keymap.set('n', '<leader>fs', '<cmd>:w<CR>', { desc = "file save" })
 vim.keymap.set('n', '<leader>ff', '<cmd>:Format<CR>', { desc = "file format" })
+vim.keymap.set('n', '<leader>qq', '<cmd>:conf qa<CR>', { desc = "quit all" })
+
 
 -- git
 vim.keymap.set('n', '<leader>gp', '<cmd>:Git push origin HEAD<CR>', { desc = "Git push head" })
+
 -- telescope stuffs
 vim.keymap.set('n', '<leader>sc', require('telescope.builtin').commands, { desc = '[S]earch [C]ommands' })
 vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = "search keymaps" })
