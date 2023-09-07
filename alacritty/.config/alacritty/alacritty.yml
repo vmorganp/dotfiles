@@ -11,19 +11,19 @@ scrolling:
 font:
   size: 15.0
   normal:
-    family: DroidSansM Nerd Font
+    family: DroidSansMono Nerd Font
     style: Regular
 
   bold:
-    family: DroidSansM Nerd Font
+    family: DroidSansMono Nerd Font
     style: Bold
 
   italic:
-    family: DroidSansM Nerd Font
+    family: DroidSansMono Nerd Font
     style: Italic
 
   bold_italic:
-    family: DroidSansM Nerd Font
+    family: DroidSansMono Nerd Font
     style: Bold Italic
 
 draw_bold_text_with_bright_colors: true

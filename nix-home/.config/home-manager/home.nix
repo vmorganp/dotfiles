@@ -2,7 +2,9 @@
 
 # All the options
 # https://nix-community.github.io/home-manager/options.html
-
+let
+  pkgsUnstable = import <nixpkgs-unstable> {};
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -44,9 +46,6 @@
     };
     syncthing = {
       enable = true;
-      tray = {
-        enable = true;
-      };
     };
   };
 
@@ -67,27 +66,46 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # have fun future me
-    # https://github.com/nix-community/home-manager/issues/1439
-
     # Gui apps
     pkgs.obsidian
     pkgs.spotify
-    pkgs.discord
-    # pkgs.librewolf
+    pkgs.gimp
+    pkgsUnstable.librewolf
+    pkgs.google-chrome # :(
+    pkgs.keepassxc
+    pkgs.vlc
 
+    # Chatty things
+    pkgs.discord
+
+    # Work apps
+    # pkgs.teams-for-linux
 
     # terminal tools
-    (pkgs.nerdfonts.override { fonts = ["DroidSansMono"];})
+    # pkgs.alacritty # this has weird bugs and doesn't really work
     pkgs.tmux
     pkgs.neovim
-    pkgs.gh
+    (pkgs.nerdfonts.override { fonts = ["DroidSansMono"];})
+    # pkgs.docker # todo probably put more work into config for this
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    # Programming languages, sdks, stuff like that
+    pkgs.go
+    pkgs.rustup
+    pkgs.gcc
+    pkgs.git
+    pkgs.gnumake
+    pkgs.nodejs-18_x
+    # (pkgs.python310.withPackages(ps: with ps; [ boto3 botocore pip])) # I have little faith
+    pkgs.virtualenv
+
+    # utils
+    pkgs.gh
+    pkgs.htop
+    pkgs.curl
+    pkgs.wget
+    pkgs.ripgrep
+    pkgs.stow
+    pkgs.findutils
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
