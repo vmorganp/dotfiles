@@ -134,6 +134,7 @@
       keepassxc # ssh key password manager
       spotify # music
       obsidian # proprietary notes app but I really like it, should probably take a look at logseq
+      obs-studio # mostly for screen recordings, but way more versatile than that
 
       # Chatty things
       telegram-desktop
@@ -202,6 +203,8 @@
       wget # download stuff
       docker-compose
       htop # process viewer
+      direnv # automagically do stuff when I cd into certain dirs
+      jq # cli json parser
 
 # programming utils
       rustup # rust programming language
