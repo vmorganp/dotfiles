@@ -85,6 +85,7 @@ in
     # pkgs.alacritty # this has weird bugs and doesn't really work
     pkgs.tmux
     pkgs.neovim
+    pkgs.lazygit
     (pkgs.nerdfonts.override { fonts = ["DroidSansMono"];})
     # pkgs.docker # todo probably put more work into config for this
 
