@@ -81,8 +81,17 @@ vim.keymap.set('n', '<leader>gb', '<cmd>:Git blame<CR>', { desc = "git" })
 vim.keymap.set('n', '<leader>ot', '<cmd>:NvimTreeToggle<CR>', { desc = "Toggle File Tree" })
 
 -- autocmds
--- auto fix whitespace
+-- auto trim trailing whitespace
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },
   command = [[%s/\s\+$//e]],
+})
+
+-- startup in telescope for files
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argv(0) == "" then
+      require("telescope.builtin").find_files()
+    end
+  end,
 })
