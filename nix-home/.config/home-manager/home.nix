@@ -74,12 +74,15 @@ in
     pkgs.google-chrome # :(
     pkgs.keepassxc
     pkgs.vlc
+    pkgs.thunderbird
 
     # Chatty things
     pkgs.discord
 
     # Work apps
-    # pkgs.teams-for-linux
+    pkgs.awscli
+    pkgs.teams-for-linux
+    pkgs.trufflehog
 
     # terminal tools
     # pkgs.alacritty # this has weird bugs and doesn't really work
@@ -95,9 +98,9 @@ in
     pkgs.gcc
     pkgs.git
     pkgs.gnumake
-    pkgs.nodejs-18_x
     # (pkgs.python310.withPackages(ps: with ps; [ boto3 botocore pip])) # I have little faith
     pkgs.virtualenv
+    # pkgs.packer
 
     # utils
     pkgs.gh
@@ -107,6 +110,15 @@ in
     pkgs.ripgrep
     pkgs.stow
     pkgs.findutils
+    pkgs.distrobox
+    pkgs.libnotify
+
+    # Desktop stuff
+    pkgs.i3
+    pkgs.playerctl
+    pkgs.polybarFull
+    pkgs.nitrogen
+    pkgs.picom
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
