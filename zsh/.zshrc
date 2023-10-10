@@ -32,6 +32,7 @@ alias tfunlock="terraform force-unlock"
 alias awsssoall="cat ~/.aws/config | grep profile | cut -d ' ' -f2 | cut -d ']' -f1 | xargs -n 1 aws sso login --profile"
 alias emptycommit="git commit --allow-empty -m \"update pull request (empty commit)\""
 alias greset="git reset --hard remotes/origin/main; git checkout main; git reset --hard remotes/origin/main; git pull"
+alias greset="git fetch origin && git reset --hard origin/$(git branch --show-current)"
 alias acl="clear"
 alias lg="lazygit"
 alias venvactivate="source .venv/bin/activate"
@@ -59,3 +60,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+# Use gnome keyring
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/keyring/ssh
