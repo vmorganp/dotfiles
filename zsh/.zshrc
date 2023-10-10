@@ -37,6 +37,7 @@ alias emptycommit="git commit --allow-empty -m \"update pull request (empty comm
 
 # App aliases
 alias tmux="tmux -2"
+alias ta="tmux attach"
 alias v="nvim"
 alias vim="nvim"
 alias lg="lazygit"
