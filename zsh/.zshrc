@@ -1,6 +1,14 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# doesn't spam me with my own name
+DEFAULT_USER="morgan"
+
+# Other path stuff
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
+
 plugins=(
     git
     fancy-ctrl-z
@@ -12,38 +20,38 @@ plugins=(
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 HIST_STAMPS="mm/dd/yyyy"
+. ~/z.sh
 
 # Aliases
-. ~/z.sh
-alias tf=terraform
-export GPG_TTY=$(tty)
 alias gpg2=gpg
 alias cdp="cd ~/Documents/Projects"
-alias cdd="cd ~/Documents"
-alias vim="nvim"
-alias nvd="neovide --multigrid"
+alias acl="clear"
+alias venvactivate="source .venv/bin/activate"
+
+# Git aliases
 alias gdl="git diff HEAD^ HEAD"
 alias git diff="echo 'run gdl to see the diff between current and last commit'; git diff;"
 alias gitundo="git reset --soft HEAD~1"
-alias vimrc="vim ~/.nvimrc"
-alias awscreds="code ~/.aws/credentials"
-alias tfclean="rm -rf .terraform;rm .terraform.lock.hcl"
-alias tfunlock="terraform force-unlock"
-alias awsssoall="cat ~/.aws/config | grep profile | cut -d ' ' -f2 | cut -d ']' -f1 | xargs -n 1 aws sso login --profile"
-alias emptycommit="git commit --allow-empty -m \"update pull request (empty commit)\""
-alias greset="git reset --hard remotes/origin/main; git checkout main; git reset --hard remotes/origin/main; git pull"
 alias greset="git fetch origin && git reset --hard origin/$(git branch --show-current)"
-alias acl="clear"
-alias lg="lazygit"
-alias venvactivate="source .venv/bin/activate"
+alias emptycommit="git commit --allow-empty -m \"update pull request (empty commit)\""
+
+# App aliases
 alias tmux="tmux -2"
 alias v="nvim"
+alias vim="nvim"
+alias lg="lazygit"
+alias nvd="neovide --multigrid"
 
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
-# source "$HOME/.cargo/env"
-DEFAULT_USER="morgan"
+## Terraform aliases
+alias tf=terraform
+alias tfclean="rm -rf .terraform;rm .terraform.lock.hcl"
+alias tfunlock="terraform force-unlock"
+
+# package management aliases
+alias hms="home-manager switch"
+alias ngc="nix-collect-garbage --delete-old"
+alias apup="sudo apt-get update && sudo apt-get upgrade -y && sudo apt clean"
+
 
 #determines search program for fzf
 if type ag &> /dev/null; then
@@ -54,11 +62,17 @@ if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden'
 fi
 
+# Fancy prompt with starship
 eval "$(starship init zsh)"
 
+# node version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# nix home manager
 source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+
+export GPG_TTY=$(tty)
 # Use gnome keyring
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/keyring/ssh
