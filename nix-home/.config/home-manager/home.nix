@@ -89,6 +89,7 @@ in
     pkgs.tmux
     pkgs.neovim
     pkgs.lazygit
+    pkgs.starship
     # pkgs.neovide # doesn't work as of 10 Oct 2023
     (pkgs.nerdfonts.override { fonts = ["DroidSansMono"];})
     # pkgs.docker # todo probably put more work into config for this
@@ -113,6 +114,7 @@ in
     pkgs.findutils
     pkgs.distrobox
     pkgs.libnotify
+    pkgs.restic
 
     # Desktop stuff
     pkgs.i3
