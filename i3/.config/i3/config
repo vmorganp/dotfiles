@@ -221,17 +221,6 @@ assign [class="Spotify"] $ws4
 assign [class="KeePassXC"] $ws5
 assign [class="Alacritty"] $ws10
 
-# custom app keybinds
-bindsym $mod+b exec --no-startup-id i3-msg [class=firefox] focus || firefox -new-window
-# bindsym $mod+m exec spotify
-bindsym $mod+m exec --no-startup-id i3-msg [class=Spotify] focus || spotify
-bindsym $mod+Shift+s exec --no-startup-id flameshot gui
-bindsym $mod+n exec --no-startup-id dunstctl -history-pop
-
-# Clipboard manager
-bindsym $alt+v exec --no-startup-id "copyq menu"
-
-
 ##############################################################################
 ################################################################### Autostarts
 ##############################################################################
@@ -262,6 +251,15 @@ bindsym $mod+Shift+Return exec i3-sensible-terminal
 bindsym $mod+Return exec i3-msg [class=Alacritty] focus || alacritty
 bindsym $mod+t exec i3-msg [class=Alacritty] focus || alacritty
 
+bindsym $mod+b exec --no-startup-id i3-msg [class=firefox] focus || firefox -new-window
+bindsym $mod+m exec --no-startup-id i3-msg [class=Spotify] focus || spotify
+
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui
+bindsym $mod+n exec --no-startup-id dunstctl -history-pop
+bindsym $win+Shift+u [urgent=latest] focus
+
+# Clipboard manager
+bindsym $alt+v exec --no-startup-id "copyq menu"
 ##############################################################################
 ##################################################################### Includes
 ##############################################################################
