@@ -256,7 +256,7 @@ bindsym $mod+m exec --no-startup-id i3-msg [class=Spotify] focus || spotify
 
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 bindsym $mod+n exec --no-startup-id dunstctl -history-pop
-bindsym $win+Shift+u [urgent=latest] focus
+bindsym $mod+Shift+u [urgent=latest] focus
 
 # Clipboard manager
 bindsym $alt+v exec --no-startup-id "copyq menu"
