@@ -49,8 +49,11 @@ alias tfclean="rm -rf .terraform;rm .terraform.lock.hcl"
 alias tfunlock="terraform force-unlock"
 
 # package management aliases
+## nix
 alias hms="home-manager switch"
 alias ngc="nix-collect-garbage --delete-old"
+alias nup="nix-channel --update"
+## apt
 alias apup="sudo apt-get update && sudo apt-get upgrade -y && sudo apt clean"
 
 

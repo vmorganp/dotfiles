@@ -1,0 +1,4 @@
+assign [class="Google-chrome"] $ws9
+assign [class="teams-for-linux"] $ws9
+bindsym $mod+g exec --no-startup-id firefox https://github.com/pulls/review-requested
+bindsym $mod+s exec i3-msg [class=teams] focus || flatpak run com.github.IsmaelMartinez.teams_for_linux
