@@ -47,7 +47,6 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = "search dir" })
 vim.keymap.set('n', '<leader>sm', require('telescope.builtin').marks, { desc = "search marks" })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = "search resume" })
-vim.keymap.set('n', '<leader>st', '<cmd>:tabs<CR>', { desc = "search tabs" })
 
 -- toggles
 vim.keymap.set('n', '<leader>Tw', '<cmd>:set wrap!<CR>', { desc = "toggle word wrap" })
@@ -75,6 +74,7 @@ vim.keymap.set('n', '<leader>be', '<cmd>:enew!<CR>', { desc = "buffer empty" })
 vim.keymap.set('n', '<leader>bo', '<cmd>:%bd|e#|bd#<CR>', { desc = "buffer only (close all others)" })
 
 -- quickfix
+vim.keymap.set('n', '<leader>td', '<cmd>:TodoTelescope<CR>', { desc = "Quickfix List" })
 vim.keymap.set('n', '<leader>ql', '<cmd>:copen<CR>', { desc = "Quickfix List" })
 vim.keymap.set('n', '<leader>qp', '<cmd>:cprevious<CR>', { desc = "Quickfix Previous" })
 vim.keymap.set('n', '<leader>qn', '<cmd>:cnext<CR>', { desc = "Quickfix Next" })
