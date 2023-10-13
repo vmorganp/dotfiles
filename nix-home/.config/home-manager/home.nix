@@ -6,25 +6,14 @@ let
   pkgsUnstable = import <nixpkgs-unstable> {};
 in
 {
+  imports = [
+  ] ++ (if builtins.pathExists  ~/.config/home-manager/profilePackages.nix then [ ~/.config/home-manager/profilePackages.nix ] else []);
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "morgan";
   home.homeDirectory = "/home/morgan";
-
   targets.genericLinux.enable = true;
-
- # # ZSH setup
- #  programs.zsh = {
- #    enable = true;
- #    history = {
- #      path = "~/.zsh_history";
- #    };
- #    oh-my-zsh = {
- #      enable = true;
- #      plugins = [ "git" "aws" "gh" "fancy-ctrl-z"];
- #    };
- #    dotDir = "~/dotfiles/zsh";
- #  };
 
   programs = {
     rofi = {
@@ -32,9 +21,6 @@ in
       font = "Droid Sans Mono 14";
       theme = "gruvbox-dark-hard";
     };
-    # starship = {
-    #   enable = true;
-    # }
   };
 
   services = {
@@ -68,7 +54,7 @@ in
   home.packages = [
     # Gui apps
     pkgs.obsidian
-    pkgs.spotify
+    # pkgs.spotify # can't login, go use the flatpak
     pkgs.gimp
     pkgsUnstable.librewolf
     pkgs.google-chrome # :(
@@ -79,10 +65,6 @@ in
     # Chatty things
     pkgs.discord
 
-    # Work apps
-    pkgs.awscli
-    pkgs.teams-for-linux
-    pkgs.trufflehog
 
     # terminal tools
     # pkgs.alacritty # this has weird bugs and doesn't really work
@@ -110,6 +92,8 @@ in
     pkgs.curl
     pkgs.wget
     pkgs.ripgrep
+    pkgs.restic
+    pkgs.fzf
     pkgs.stow
     pkgs.findutils
     pkgs.distrobox
@@ -124,44 +108,7 @@ in
     pkgs.picom
     pkgs.dunst
     pkgs.screenkey
+    ];
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
-
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
-  # You can also manage environment variables but you will have to manually
-  # source
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/morgan/etc/profile.d/hm-session-vars.sh
-  #
-  # if you don't want to manage your shell through Home Manager.
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
-
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
