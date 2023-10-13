@@ -55,7 +55,6 @@ vim.keymap.set('n', '<leader>Tn', '<cmd>:set number!<CR>', { desc = "toggle line
 
 -- tabs
 vim.keymap.set('n', '<leader>tc', '<cmd>:tabnew<CR>', { desc = "create tab" })
-vim.keymap.set('n', '<leader>td', '<cmd>:tabclose<CR>', { desc = "close tab" })
 vim.keymap.set('n', '<leader>th', '<cmd>:tabprevious<CR>', { desc = "tab left" })
 vim.keymap.set('n', '<leader>tl', '<cmd>:tabnext<CR>', { desc = "tab next" })
 vim.keymap.set('n', '<leader>tn', '<cmd>:tabnext<CR>', { desc = "tab next" })
@@ -74,6 +73,12 @@ vim.keymap.set('n', '<leader>bl', '<cmd>:b#<CR>', { desc = "buffer last (toggle 
 vim.keymap.set('n', '<leader>bp', '<cmd>:bprev<CR>', { desc = "buffer previous" })
 vim.keymap.set('n', '<leader>be', '<cmd>:enew!<CR>', { desc = "buffer empty" })
 vim.keymap.set('n', '<leader>bo', '<cmd>:%bd|e#|bd#<CR>', { desc = "buffer only (close all others)" })
+
+-- quickfix
+vim.keymap.set('n', '<leader>ql', '<cmd>:copen<CR>', { desc = "Quickfix List" })
+vim.keymap.set('n', '<leader>qp', '<cmd>:cprevious<CR>', { desc = "Quickfix Previous" })
+vim.keymap.set('n', '<leader>qn', '<cmd>:cnext<CR>', { desc = "Quickfix Next" })
+vim.keymap.set('n', '<leader>qc', '<cmd>:cexpr []<CR>', { desc = "Quickfix Clear" })
 
 -- binds
 vim.keymap.set('n', '<leader>gg', '<cmd>:Git<CR>', { desc = "git" })
