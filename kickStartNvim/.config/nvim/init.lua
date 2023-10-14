@@ -428,9 +428,9 @@ end
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  jedi_language_server={},
   -- rust_analyzer = {},
-  -- tsserver = {},
+  tsserver = {},
 
   lua_ls = {
     Lua = {
