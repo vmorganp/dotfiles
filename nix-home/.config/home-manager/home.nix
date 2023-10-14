@@ -19,7 +19,7 @@ in
     rofi = {
       enable = true;
       font = "Droid Sans Mono 14";
-      theme = "gruvbox-dark-hard";
+      theme = "sidebar";
     };
   };
 

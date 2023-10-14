@@ -5,6 +5,6 @@
     pkgs.awscli
     pkgs.teams-for-linux
     pkgs.trufflehog
-    pkgs.postman
+    # pkgs.postman # broken?
   ];
 }
