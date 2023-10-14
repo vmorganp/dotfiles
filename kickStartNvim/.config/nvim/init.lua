@@ -431,6 +431,8 @@ local servers = {
   jedi_language_server={},
   -- rust_analyzer = {},
   tsserver = {},
+  docker_compose_language_service = {},
+  dockerls = {},
 
   lua_ls = {
     Lua = {
