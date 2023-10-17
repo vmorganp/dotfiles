@@ -71,7 +71,7 @@ vim.keymap.set('n', '<leader>bn', '<cmd>:bnext<CR>', { desc = "buffer next" })
 vim.keymap.set('n', '<leader>bl', '<cmd>:b#<CR>', { desc = "buffer last (toggle between)" })
 vim.keymap.set('n', '<leader>bp', '<cmd>:bprev<CR>', { desc = "buffer previous" })
 vim.keymap.set('n', '<leader>be', '<cmd>:enew!<CR>', { desc = "buffer empty" })
-vim.keymap.set('n', '<leader>bo', '<cmd>:%bd|e#|bd#<CR>', { desc = "buffer only (close all others)" })
+vim.keymap.set('n', '<leader>bo', '<cmd>:%bd|e#|bd#|normal `"<CR>', { desc = "buffer only (close all others)" })
 
 -- quickfix
 vim.keymap.set('n', '<leader>td', '<cmd>:TodoTelescope<CR>', { desc = "Quickfix List" })
