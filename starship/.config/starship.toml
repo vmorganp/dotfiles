@@ -1,6 +1,4 @@
-# Don't print a new line at the start of the prompt
 add_newline = false
-# palette = "gruvbox"
 
 [directory]
 style = "bg:blue fg:black"
@@ -16,7 +14,6 @@ truncation_symbol = ""
 style = "bg:purple fg:black"
 
 [git_status]
-
 format = '($all_status$ahead_behind)'
 conflicted = "[\\[CNFLCT\\]](bg:yellow fg:black)"
 ahead = "[\\[AHEAD ${count}\\]](bg:yellow fg:black)"
@@ -30,10 +27,8 @@ staged = '[\\[++\($count\)\\]](bg:green fg:black)'
 renamed = "[\\[RNMD\\]](bg:yellow fg:black)"
 deleted = "[\\[DLTD\\]](bg:yellow fg:black)"
 
-
-
 # the aws module should be able to check if credentials are valid or not
-# unfortunately it doesn't 
+# unfortunately it doesn't
 [aws]
 disabled = true
 
@@ -41,8 +36,3 @@ disabled = true
 format = "[$symbol(via $virtualenv)]($style)"
 style = "bold bg:orange"
 
-
-# Define custom colors
-# [palettes.gruvbox]
-# Overwrite existing color
-# orange="#d65d0e"

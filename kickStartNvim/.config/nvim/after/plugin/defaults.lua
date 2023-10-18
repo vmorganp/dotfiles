@@ -85,6 +85,14 @@ vim.keymap.set('n', '<leader>gg', '<cmd>:Git<CR>', { desc = "git" })
 vim.keymap.set('n', '<leader>gb', '<cmd>:Git blame<CR>', { desc = "git" })
 vim.keymap.set('n', '<leader>ot', '<cmd>:NvimTreeFindFileToggle<CR>', { desc = "Toggle File Tree" })
 
+
+-- theme
+-- vim.cmd [[colorscheme blackbird]]
+-- vim.cmd [[colorscheme gruvbox]]
+-- vim.cmd [[colorscheme monokai-pro-classic]]
+-- vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme tokyonight-night]]
+
 -- autocmds
 -- auto trim trailing whitespace
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {

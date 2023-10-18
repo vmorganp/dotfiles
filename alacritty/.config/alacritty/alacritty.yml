@@ -225,7 +225,7 @@ schemes:
       white:   '0x828791'
 
 
-colors: *one
+colors: *tokyo-night
 cursor:
   style:
     shape: Beam
