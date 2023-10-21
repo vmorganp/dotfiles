@@ -18,7 +18,7 @@ in
   programs = {
     rofi = {
       enable = true;
-      font = "Droid Sans Mono 14";
+      font = "FiraMono Nerd Font 14";
       theme = "sidebar";
     };
   };
@@ -35,6 +35,7 @@ in
     };
   };
 
+  fonts.fontconfig.enable = true;
 
 
   # This value determines the Home Manager release that your configuration is
@@ -74,7 +75,7 @@ in
     pkgs.lazygit
     pkgs.starship
     # pkgs.neovide # doesn't work as of 10 Oct 2023
-    (pkgs.nerdfonts.override { fonts = ["DroidSansMono"];})
+    (pkgs.nerdfonts.override { fonts = ["FiraMono"];})
     # pkgs.docker # todo probably put more work into config for this
 
     # Programming languages, sdks, stuff like that
@@ -100,6 +101,7 @@ in
     pkgs.distrobox
     pkgs.libnotify
     pkgs.restic
+    pkgs.bat
 
     # Desktop stuff
     pkgs.i3

@@ -220,6 +220,7 @@ bindsym $mod+q kill
 assign [class="Spotify"] $ws4
 assign [class="KeePassXC"] $ws5
 assign [class="Alacritty"] $ws10
+assign [class="kitty"] $ws10
 assign [class="neovide"] $ws2
 
 ##############################################################################
@@ -249,8 +250,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # start a terminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal
-bindsym $mod+Return exec i3-msg [class=Alacritty] focus || alacritty
-bindsym $mod+t exec i3-msg [class=Alacritty] focus || alacritty
+bindsym $mod+Return exec i3-msg [class=kitty] focus || kitty
+bindsym $mod+t exec i3-msg [class=kitty] focus || kitty
 
 bindsym $mod+b exec --no-startup-id i3-msg [class=firefox] focus || firefox -new-window
 bindsym $mod+m exec --no-startup-id i3-msg [class=Spotify] focus || spotify
