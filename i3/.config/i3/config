@@ -229,9 +229,14 @@ assign [class="neovide"] $ws2
 exec_always --no-startup-id "~/polybar.sh"
 exec_always --no-startup-id "compton"
 exec_always --no-startup-id "sleep 1; nitrogen --restore"
-exec_always --no-startup-id "copyq"
 exec_always --no-startup-id "dunst -config ~/.config/dunst/dunstrc"
 exec_always --no-startup-id "eval $(gnome-keyring-daemon -r -d)"
+
+
+exec_always --no-startup-id "copyq"
+exec_always --no-startup-id "alacritty"
+exec_always --no-startup-id "keepassxc"
+exec_always --no-startup-id "firefox"
 
 ##############################################################################
 ##################################################################### Keybinds
