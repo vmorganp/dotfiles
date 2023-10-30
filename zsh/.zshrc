@@ -32,7 +32,7 @@ alias venvactivate="source .venv/bin/activate"
 alias gdl="git diff HEAD^ HEAD"
 alias git diff="echo 'run gdl to see the diff between current and last commit'; git diff;"
 alias gitundo="git reset --soft HEAD~1"
-alias greset="git reset --hard remotes/origin/HEAD; git pull --rebase"
+alias greset="git pull --rebase && git branch --show-current | xargs -I{} git reset --hard remotes/origin/{} && git pull --rebase"
 alias emptycommit="git commit --allow-empty -m \"update pull request (empty commit)\""
 
 # App aliases
