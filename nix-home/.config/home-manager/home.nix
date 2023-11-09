@@ -57,7 +57,7 @@ in
     pkgs.obsidian
     # pkgs.spotify # can't login, go use the flatpak
     pkgs.gimp
-    pkgsUnstable.librewolf
+    # pkgsUnstable.librewolf
     pkgs.google-chrome # :(
     pkgs.keepassxc
     pkgs.vlc
