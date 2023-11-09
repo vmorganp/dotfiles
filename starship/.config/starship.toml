@@ -1,5 +1,4 @@
 add_newline = false
-ignore_timeout = true
 
 [directory]
 style = "bg:blue fg:black"
