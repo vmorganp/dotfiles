@@ -242,7 +242,7 @@ exec_always --no-startup-id "firefox"
 ##################################################################### Keybinds
 ##############################################################################
 # Rofi
-bindsym $mod+p exec --no-startup-id dmenu_run
+bindsym $mod+p exec --no-startup-id "rofi -show run"
 bindsym $mod+d exec --no-startup-id "rofi -show drun"
 bindsym $mod+Tab exec --no-startup-id "rofi -show window"
 
