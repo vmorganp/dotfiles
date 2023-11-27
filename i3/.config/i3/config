@@ -76,8 +76,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 ##############################################################################
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -97,10 +97,10 @@ set $ws2 "2 "
 set $ws3 "3"
 set $ws4 "4 󰝚"
 set $ws5 "5 󰌆"
-set $ws6 "6"
+set $ws6 "6 󰭹"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9 󰭹"
+set $ws9 "9"
 set $ws10 "10 "
 
 # assign ws to monitor
@@ -109,10 +109,10 @@ workspace $ws2 output $monitor_middle
 workspace $ws3 output $monitor_middle
 workspace $ws4 output $monitor_middle
 workspace $ws5 output $monitor_middle
-workspace $ws6 output $monitor_middle
-workspace $ws7 output $monitor_middle
-workspace $ws8 output $monitor_middle
-workspace $ws9 output $monitor_left
+workspace $ws6 output $monitor_left
+workspace $ws7 output $monitor_left
+workspace $ws8 output $monitor_right
+workspace $ws9 output $monitor_right
 workspace $ws10 output $monitor_right
 
 # switch to workspace
@@ -234,7 +234,7 @@ exec_always --no-startup-id "eval $(gnome-keyring-daemon -r -d)"
 
 
 exec_always --no-startup-id "copyq"
-exec_always --no-startup-id "alacritty"
+exec_always --no-startup-id "kitty"
 exec_always --no-startup-id "keepassxc"
 exec_always --no-startup-id "firefox"
 
@@ -270,7 +270,7 @@ bindsym $alt+v exec --no-startup-id "copyq menu"
 ##############################################################################
 ############################################################### Power Menu-ish
 ##############################################################################
-set $Locker i3lock && sleep 1
+set $Locker i3lock -c 000000 && sleep 1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
