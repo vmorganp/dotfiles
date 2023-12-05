@@ -94,7 +94,6 @@ in
     pkgs.curl
     pkgs.wget
     pkgs.ripgrep
-    pkgs.restic
     pkgs.fzf
     pkgs.stow
     pkgs.findutils
