@@ -101,6 +101,7 @@ in
     pkgs.libnotify
     pkgs.restic
     pkgs.bat
+    pkgs.traceroute
 
     # Desktop stuff
     pkgs.i3

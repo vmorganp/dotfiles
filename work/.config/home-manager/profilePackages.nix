@@ -6,6 +6,7 @@
     pkgs.teams-for-linux
     pkgs.trufflehog
     pkgs.dbeaver
+    pkgs.packer
     # pkgs.postman # broken?
   ];
 }
