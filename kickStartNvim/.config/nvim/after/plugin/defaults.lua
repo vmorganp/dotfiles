@@ -93,7 +93,8 @@ vim.keymap.set('n', '<leader>ot', '<cmd>:NvimTreeFindFileToggle<CR>', { desc = "
 -- vim.cmd [[colorscheme gruvbox]]
 -- vim.cmd [[colorscheme monokai-pro-classic]]
 -- vim.cmd [[colorscheme onedark]]
-vim.cmd [[colorscheme tokyonight-night]]
+vim.cmd [[colorscheme catppuccin-mocha]]
+-- vim.cmd [[colorscheme tokyonight-night]]
 
 -- autocmds
 -- auto trim trailing whitespace

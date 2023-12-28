@@ -75,7 +75,7 @@ in
     pkgs.lazygit
     pkgs.starship
     # pkgs.neovide # doesn't work as of 10 Oct 2023
-    (pkgs.nerdfonts.override { fonts = ["FiraMono"];})
+    (pkgs.nerdfonts.override { fonts = ["FiraMono" "IosevkaTerm"];})
     # pkgs.docker # todo probably put more work into config for this
 
     # Programming languages, sdks, stuff like that
@@ -102,6 +102,7 @@ in
     pkgs.restic
     pkgs.bat
     pkgs.traceroute
+    pkgs.neovim
 
     # Desktop stuff
     pkgs.i3

@@ -41,7 +41,7 @@ alias ta="tmux attach"
 alias v="nvim"
 alias vim="nvim"
 alias lg="lazygit"
-alias nvd="neovide --multigrid"
+alias nvd="neovide"
 
 ## Terraform aliases
 alias tf=terraform
@@ -54,7 +54,7 @@ alias hms="home-manager switch"
 alias ngc="nix-collect-garbage --delete-old"
 alias nup="nix-channel --update"
 ## apt
-alias apup="sudo apt-get update && sudo apt-get upgrade -y && sudo apt clean"
+alias apup="sudo apt update && sudo apt upgrade -y && sudo apt clean"
 
 
 #determines search program for fzf
