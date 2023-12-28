@@ -136,7 +136,7 @@ require('lazy').setup({
 
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    main="ibl",
+    main = "ibl",
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
     opts = {
@@ -429,7 +429,7 @@ end
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  jedi_language_server={},
+  jedi_language_server = {},
   -- rust_analyzer = {},
   tsserver = {},
   docker_compose_language_service = {},
