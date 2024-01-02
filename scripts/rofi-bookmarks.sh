@@ -13,6 +13,6 @@ bookmarks=$(sqlite3 'file:places.sqlite?immutable=1' "select moz_bookmarks.title
                        and moz_bookmarks.type = 1
                        and length(moz_bookmarks.title) > 0
                        order by moz_bookmarks.dateAdded")
-selection=$(echo "$bookmarks" | rofi -dmenu -i -p "Select bookmark: ")
+selection=$(echo "$bookmarks" | rofi -dmenu -i -matching fuzzy -sorting-method fzf -sort -p "Select bookmark: ")
 link=$(echo $selection | cut -d "|" -f 2)
 open $link
