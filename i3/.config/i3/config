@@ -262,8 +262,8 @@ bindsym $mod+Shift+Return exec i3-sensible-terminal
 bindsym $mod+Return exec i3-msg [class=kitty] focus || kitty
 bindsym $mod+t exec i3-msg [class=kitty] focus || kitty
 
-bindsym $mod+b exec --no-startup-id i3-msg [class=firefox] focus || firefox -new-window
-bindsym $mod+m exec --no-startup-id i3-msg [class=Spotify] focus || spotify
+bindsym $mod+b exec --no-startup-id i3-msg [class=firefox] focus||  i3-msg [class=Firefox-esr] focus  || firefox -new-window
+bindsym $mod+m exec --no-startup-id i3-msg [class=Spotify] focus || flatpak run com.spotify.Client
 
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 bindsym $mod+n exec --no-startup-id dunstctl -history-pop

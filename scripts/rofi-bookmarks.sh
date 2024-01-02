@@ -1,7 +1,9 @@
 #!/bin/bash
+set -e
 
 # TODO there's probably a smarter way to cd here
-cd ~/.mozilla/firefox/2uus9lqd.default-release/
+cd ~/.mozilla/firefox/eati7n7q.default-esr/
+
 if ! [ -x "$(command -v sqlite3)" ]; then
     echo "sqlite3 is not installed buddy"
     exit 1
