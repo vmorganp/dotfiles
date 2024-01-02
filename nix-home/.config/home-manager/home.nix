@@ -103,6 +103,7 @@ in
     pkgs.bat
     pkgs.traceroute
     pkgs.neovim
+    pkgs.sqlite
 
     # Desktop stuff
     pkgs.i3
