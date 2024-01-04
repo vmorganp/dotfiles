@@ -54,7 +54,7 @@ in
   # environment.
   home.packages = [
     # Gui apps
-    pkgs.obsidian
+    # pkgs.obsidian
     # pkgs.spotify # can't login, go use the flatpak
     pkgs.gimp
     # pkgsUnstable.librewolf
@@ -71,6 +71,7 @@ in
     # pkgs.alacritty # this has weird bugs and doesn't really work
     pkgs.tmux
     pkgs.neovim
+    pkgs.prettierd
     pkgs.lazygit
     pkgs.starship
     # pkgs.neovide # doesn't work as of 10 Oct 2023
@@ -101,8 +102,8 @@ in
     pkgs.restic
     pkgs.bat
     pkgs.traceroute
-    pkgs.neovim
     pkgs.sqlite
+    pkgs.fscrypt-experimental
 
     # Desktop stuff
     pkgs.i3
