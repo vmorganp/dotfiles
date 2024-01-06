@@ -2,8 +2,7 @@
 {
   nixpkgs.config.allowUnfree = true;
   home.packages = [
-    pkgs.awscli
-    pkgs.teams-for-linux
+    pkgs.awscli2
     pkgs.trufflehog
     pkgs.dbeaver
     pkgs.packer

@@ -8,6 +8,7 @@ DEFAULT_USER="morgan"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
+export PIP_REQUIRE_VIRTUALENV=true
 
 plugins=(
     git
@@ -55,6 +56,10 @@ alias ngc="nix-collect-garbage --delete-old"
 alias nup="nix-channel --update"
 ## apt
 alias apup="sudo apt update && sudo apt upgrade -y && sudo apt clean"
+## flatpak
+alias flup="flatpak update && flatpak uninstall --unused"
+## all
+alias up="nup && hms && ngc && apup && flup"
 
 
 #determines search program for fzf

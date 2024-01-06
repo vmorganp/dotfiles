@@ -62,7 +62,6 @@ in
     pkgs.keepassxc
     pkgs.vlc
     pkgs.thunderbird
-    pkgs.spotify
 
     # Chatty things
     pkgs.discord
