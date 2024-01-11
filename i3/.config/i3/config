@@ -23,7 +23,7 @@ floating_modifier $mod
 set $monitor_left "HDMI-1"
 set $monitor_right "HDMI-0"
 set $monitor_middle "DP-0"
-exec --no-startup-id "xrandr --output HDMI-1 --mode 2560x1080 --rotate normal --pos 0x300 --output DP-0 --mode 2560x1440 --rotate normal --primary --pos 2560x0 --output HDMI-0 --mode 1920x1080 --rotate right --pos 5120x0"
+exec --no-startup-id "~/resolution.sh"
 
 ##############################################################################
 ############################################################### General Config

@@ -82,8 +82,8 @@ vim.keymap.set('n', '<leader>qc', '<cmd>:cexpr []<CR>', { desc = "Quickfix Clear
 
 -- binds
 vim.keymap.set('n', '<leader>gg', '<cmd>:Git<CR>', { desc = "git" })
-vim.keymap.set('n', '<leader>gb', '<cmd>:Git blame<CR>', { desc = "git" })
-vim.keymap.set('n', '<leader>gs', '<cmd>:Gvdiffsplit<CR>', { desc = "git" })
+vim.keymap.set('n', '<leader>gb', '<cmd>:Git blame<CR>', { desc = "git blame" })
+vim.keymap.set('n', '<leader>gs', '<cmd>:Gvdiffsplit<CR>', { desc = "git diff split" })
 
 vim.keymap.set('n', '<leader>ot', '<cmd>:NvimTreeFindFileToggle<CR>', { desc = "Toggle File Tree" })
 
