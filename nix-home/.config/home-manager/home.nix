@@ -71,7 +71,6 @@ in
     # pkgs.alacritty # this has weird bugs and doesn't really work
     pkgs.tmux
     pkgs.neovim
-    pkgs.prettierd
     pkgs.lazygit
     pkgs.starship
     # pkgs.neovide # doesn't work as of 10 Oct 2023
