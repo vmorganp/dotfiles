@@ -9,6 +9,7 @@ pkill polybar
 # Wait until the processes have been shut down
 while pgrep -x polybar >/dev/null; do sleep 1; done
 
+polybar --reload base &
 MONITOR=DP-0 polybar --reload base &
 # Real cool stuff to run polybar on every monitor which is not what I want
 # # Launch polybar
