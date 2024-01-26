@@ -10,7 +10,22 @@ return {
         return {
             sources = {
                 diagnostics.actionlint,
-                formatting.prettier,
+                diagnostics.jsonlint,
+                diagnostics.terraform_validate,
+
+                formatting.autopep8,
+                formatting.eslint,
+                formatting.jq,
+                formatting.prettier.with({
+                    filetypes =
+                    {
+                        "html",
+                        "json",
+                        "yaml",
+                        "markdown"
+                    }
+                }),
+                formatting.yamlfmt,
             },
         }
     end,

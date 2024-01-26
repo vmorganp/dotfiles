@@ -253,8 +253,6 @@ bindsym $mod+v exec --no-startup-id "~/dotfiles/scripts/edit-project.sh"
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # start a terminal
 bindsym $mod+Shift+Return exec i3-sensible-terminal
@@ -263,6 +261,7 @@ bindsym $mod+t exec i3-msg [class=kitty] focus || kitty
 
 bindsym $mod+b exec --no-startup-id i3-msg [class=firefox] focus||  i3-msg [class=Firefox-esr] focus  || firefox -new-window
 bindsym $mod+m exec --no-startup-id i3-msg [class=Spotify] focus || flatpak run com.spotify.Client
+bindsym $mod+Shift+n exec --no-startup-id  kitty nvim ~/important_documents/notes
 
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 bindsym $mod+n exec --no-startup-id dunstctl -history-pop

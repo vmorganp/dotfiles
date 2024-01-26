@@ -15,6 +15,7 @@ plugins=(
     fancy-ctrl-z
     gh
     aws
+    poetry
 )
 
 # Path to your oh-my-zsh installation.

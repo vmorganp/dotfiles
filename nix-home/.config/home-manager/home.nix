@@ -106,6 +106,7 @@ in
 
     # Desktop stuff
     pkgs.i3
+    pkgs.i3lock
     pkgs.playerctl
     pkgs.polybarFull
     pkgs.nitrogen

@@ -429,13 +429,13 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
+  gopls = {},
   jedi_language_server = {},
   -- rust_analyzer = {},
   tsserver = {},
   docker_compose_language_service = {},
   dockerls = {},
-
+  html = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
