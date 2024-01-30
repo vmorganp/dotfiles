@@ -12,8 +12,9 @@ return {
                 diagnostics.actionlint,
                 diagnostics.jsonlint,
                 diagnostics.terraform_validate,
+                diagnostics.mypy,
 
-                formatting.autopep8,
+                formatting.black,
                 formatting.eslint,
                 formatting.jq,
                 formatting.prettier.with({
@@ -27,6 +28,21 @@ return {
                 }),
                 formatting.yamlfmt,
             },
+            on_attach = function(client, bufnr)
+                if client.supports_method("textDocument/formatting") then
+                    vim.api.nvim_clear_autocmds({
+                        group = augroup,
+                        buffer = bufnr,
+                    })
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        group = augroup,
+                        buffer = bufnr,
+                        callback = function()
+                            vim.lsp.buf.format({ bufnr = bufnr })
+                        end,
+                    })
+                end
+            end,
         }
     end,
 }

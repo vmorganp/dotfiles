@@ -127,7 +127,6 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
         component_separators = '|',
         section_separators = '',
       },
@@ -430,7 +429,7 @@ end
 local servers = {
   -- clangd = {},
   gopls = {},
-  jedi_language_server = {},
+  pyright = {},
   -- rust_analyzer = {},
   tsserver = {},
   docker_compose_language_service = {},
