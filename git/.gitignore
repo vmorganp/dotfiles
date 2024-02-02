@@ -3,3 +3,4 @@
 **.tfstate
 **/venv/*
 **/node_modules/*
+**/.null-ls*
