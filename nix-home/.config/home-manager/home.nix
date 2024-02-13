@@ -37,7 +37,6 @@ in
 
   fonts.fontconfig.enable = true;
 
-
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -103,6 +102,7 @@ in
     pkgs.traceroute
     pkgs.sqlite
     pkgs.fscrypt-experimental
+    pkgs.pandoc
 
     # Desktop stuff
     pkgs.i3

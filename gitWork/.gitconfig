@@ -14,4 +14,4 @@
 [gpg]
         format = ssh
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = ~/dotfiles/gitWork/.gitignore

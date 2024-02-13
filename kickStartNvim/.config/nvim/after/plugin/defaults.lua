@@ -76,8 +76,8 @@ vim.keymap.set('n', '<leader>bo', '<cmd>:%bd|e#|bd#|normal `"<CR>', { desc = "bu
 -- quickfix
 vim.keymap.set('n', '<leader>td', '<cmd>:TodoTelescope<CR>', { desc = "Quickfix List" })
 vim.keymap.set('n', '<leader>ql', '<cmd>:copen<CR>', { desc = "Quickfix List" })
-vim.keymap.set('n', '<leader>qp', '<cmd>:cprevious<CR>', { desc = "Quickfix Previous" })
-vim.keymap.set('n', '<leader>qn', '<cmd>:cnext<CR>', { desc = "Quickfix Next" })
+vim.keymap.set('n', '<leader>qp', '<cmd>:cprevious<CR>zz', { desc = "Quickfix Previous" })
+vim.keymap.set('n', '<leader>qn', '<cmd>:cnext<CR>zz', { desc = "Quickfix Next" })
 vim.keymap.set('n', '<leader>qc', '<cmd>:cexpr []<CR>', { desc = "Quickfix Clear" })
 
 -- binds
