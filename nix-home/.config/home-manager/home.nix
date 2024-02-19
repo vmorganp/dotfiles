@@ -75,6 +75,7 @@ in
     # pkgs.neovide # doesn't work as of 10 Oct 2023
     (pkgs.nerdfonts.override { fonts = ["FiraMono" "IosevkaTerm"];})
     # pkgs.docker # todo probably put more work into config for this
+    pkgs.direnv
 
     # Programming languages, sdks, stuff like that
     pkgs.go
@@ -85,6 +86,7 @@ in
     # (pkgs.python310.withPackages(ps: with ps; [ boto3 botocore pip])) # I have little faith
     pkgs.virtualenv
     # pkgs.packer
+    pkgs.terraform
 
     # utils
     pkgs.gh
