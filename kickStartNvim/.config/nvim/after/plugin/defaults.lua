@@ -30,6 +30,7 @@ vim.o.list = true
 -- basics
 -- vim.keymap.set('n', '<leader>qq', '<cmd>:q<CR>', {desc="quit vim"})
 vim.keymap.set('n', '<leader>fs', '<cmd>:w<CR>', { desc = "file save" })
+vim.keymap.set('n', '<leader>fS', '<cmd>:noautocmd w<CR>', { desc = "file save (ignore autocmds)" })
 vim.keymap.set('n', '<leader>ff', function() vim.lsp.buf.format() end, { desc = "file format" })
 vim.keymap.set('n', '<leader>qq', '<cmd>:conf qa<CR>', { desc = "quit all" })
 
