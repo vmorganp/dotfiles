@@ -20,9 +20,17 @@ floating_modifier $mod
 ##############################################################################
 ############################################################### Monitor Config
 ##############################################################################
+# include $HOME/.config/i3/monitor_config # this maybe doesn't work?
+# CHONK MONITOR CONFIG
 set $monitor_left "HDMI-1"
 set $monitor_right "HDMI-0"
 set $monitor_middle "DP-0"
+
+# MINI PC MONITOR CONFIG
+# set $monitor_left "HDMI-1"
+set $monitor_right "HDMI-2"
+set $monitor_middle "DP-1"
+
 exec --no-startup-id "~/resolution.sh"
 
 ##############################################################################
@@ -242,11 +250,12 @@ exec_always --no-startup-id "firefox"
 ##################################################################### Keybinds
 ##############################################################################
 # Rofi
-bindsym $mod+p exec --no-startup-id "rofi -show run -theme dmenu"
-bindsym $mod+d exec --no-startup-id "rofi -show drun"
-bindsym $mod+Tab exec --no-startup-id "rofi -show window"
-bindsym $mod+o exec --no-startup-id "~/dotfiles/scripts/rofi-bookmarks.sh"
-bindsym $mod+v exec --no-startup-id "~/dotfiles/scripts/edit-project.sh"
+# the LC all thing is weird locale bug avoiding
+bindsym $mod+p exec --no-startup-id "LC_ALL='C' rofi -show run -theme dmenu"
+bindsym $mod+d exec --no-startup-id "LC_ALL='C' rofi -show drun "
+bindsym $mod+Tab exec --no-startup-id "LC_ALL='C' rofi -show window"
+bindsym $mod+o exec --no-startup-id "LC_ALL='C' ~/dotfiles/scripts/rofi-bookmarks.sh"
+bindsym $mod+v exec --no-startup-id "LC_ALL='C' ~/dotfiles/scripts/edit-project.sh"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

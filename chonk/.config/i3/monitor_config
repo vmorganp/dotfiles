@@ -1,0 +1,3 @@
+set $monitor_left "HDMI-1"
+set $monitor_right "HDMI-0"
+set $monitor_middle "DP-0"
