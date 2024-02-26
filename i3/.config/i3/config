@@ -254,7 +254,7 @@ exec_always --no-startup-id "firefox"
 bindsym $mod+p exec --no-startup-id "LC_ALL='C' rofi -show run -theme dmenu"
 bindsym $mod+d exec --no-startup-id "LC_ALL='C' rofi -show drun "
 bindsym $mod+Tab exec --no-startup-id "LC_ALL='C' rofi -show window"
-bindsym $mod+o exec --no-startup-id "LC_ALL='C' ~/dotfiles/scripts/rofi-bookmarks.sh"
+bindsym $mod+o exec --no-startup-id "LC_ALL='C' bash ~/dotfiles/scripts/rofi-bookmarks.sh"
 bindsym $mod+v exec --no-startup-id "LC_ALL='C' ~/dotfiles/scripts/edit-project.sh"
 
 # reload the configuration file

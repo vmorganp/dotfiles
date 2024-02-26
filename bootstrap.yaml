@@ -1,0 +1,162 @@
+---
+# don't have ansible yet?
+# just run this
+# sudo apt-get install -y python3 python3-pip curl && <TODO some other stuff> && ansible-playbook bootstrap.yaml -i localhost, --ask-become-pass
+- name: Deploy home server
+  hosts: all
+  gather_facts: false
+  connection: local
+  tasks:
+    ####################################################################
+    #################################################### change my shell
+    ####################################################################
+
+    - name: change user shell to zsh
+      become: yes
+      user:
+        name: "morgan" # this is not ideal but its my un so whatever
+        shell: /bin/zsh
+
+    ####################################################################
+    ######################################################### base utils
+    ####################################################################
+
+    - name: apt Update
+      ansible.builtin.apt:
+        update_cache: yes
+        upgrade: yes
+      become: true
+
+    - name: install stuff that should be out of box
+      ansible.builtin.apt:
+        pkg:
+          - wget
+          - curl
+          - stow
+          - git
+          - python3
+          - python3-pip # you'll need this to even get ansible...
+          - kitty
+          - ufw
+      become: true
+
+    ####################################################################
+    ####################################################### grab my dots
+    ####################################################################
+
+    - name: Clone dotfiles repo
+      ansible.builtin.git:
+        repo: https://github.com/vmorganp/dotfiles.git
+        dest: /home/morgan/dotfiles
+
+    ####################################################################
+    ######## install and remove i3 because it sets up the nix one nicely
+    ####################################################################
+
+    - name: install stuff that should be out of box
+      ansible.builtin.apt:
+        pkg:
+          - i3
+      become: true
+
+    - name: Remove "i3" package
+      ansible.builtin.apt:
+        name: i3
+        state: absent
+      become: true
+
+
+    ####################################################################
+    ############################################################ flatpak
+    ####################################################################
+
+    - name: Add the flathub flatpak repository remote to the user installation
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+        method: user
+
+    - name: Install the spotify flatpak
+      community.general.flatpak:
+        name: com.spotify.Client
+        state: present
+        method: user
+
+    ####################################################################
+    ############################################################# Docker
+    ####################################################################
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+      become: true
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+      become: true
+
+    - name: apt Update
+      ansible.builtin.apt:
+        update_cache: yes
+        upgrade: yes
+      become: true
+
+    - name: install docker
+      ansible.builtin.apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+      become: true
+
+    - name: add user to docker group
+      user:
+        name: "morgan"
+        append: yes
+        groups: docker
+      become: true
+
+    - name: install docker
+      ansible.builtin.apt:
+         pkg:
+           - docker-ce
+           - docker-ce-cli
+           - containerd.io
+           - docker-buildx-plugin
+           - docker-compose-plugin
+      become: true
+
+   ####################################################################
+   ############################################################### Node
+   ####################################################################
+
+    - name: Install nvm
+      become: no
+      ansible.builtin.shell: >
+        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.7/install.sh | bash
+      args:
+        executable: /bin/bash
+        chdir: "$HOME"
+        creates: "$HOME/.nvm/nvm.sh"
+
+    - name: Install node
+      become: no
+      shell: >
+        . ~/.nvm/nvm.sh && nvm install stable && nvm use stable && nvm alias default stable
+      args:
+        executable: /bin/bash
+
+   ####################################################################
+   ########################################################### Firewall
+   ####################################################################
+
+    - name: Deny everything and enable UFW
+      community.general.ufw:
+        state: enabled
+        policy: deny
+      become: true
