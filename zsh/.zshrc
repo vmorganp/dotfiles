@@ -36,6 +36,23 @@ alias git diff="echo 'run gdl to see the diff between current and last commit'; 
 alias gitundo="git reset --soft HEAD~1"
 alias greset="git fetch && git branch --show-current | xargs -I{} git reset --hard remotes/origin/{}"
 alias emptycommit="git commit --allow-empty -m \"update pull request (empty commit)\""
+gcleanup ()
+{
+    echo "size before: $(du -sh .)"
+    echo "branches before: $(git branch | wc -l)"
+    # delete local braches that have been merged in origin
+    git fetch origin --prune
+    # garbage collection
+    git gc
+    # hard reset to default branch, delete branches that have already been merged into it
+    default_branch=$( git rev-parse --abbrev-ref origin/HEAD | cut -c8-)
+    echo "resetting to $default_branch and deleting merged branches..."
+    git checkout $default_branch
+    git reset --hard origin/$default_branch
+    git branch --merged | egrep -v '(^\*|'$default_branch')' | xargs git branch -d
+    echo "size after: $(du -sh .)"
+    echo "branches after: $(git branch | wc -l)"
+}
 
 # App aliases
 alias tmux="tmux -2"

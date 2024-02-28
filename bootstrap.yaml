@@ -38,22 +38,23 @@
           - python3-pip # you'll need this to even get ansible...
           - kitty
           - ufw
+          - rsync
       become: true
 
     ####################################################################
     ####################################################### grab my dots
     ####################################################################
 
-    - name: Clone dotfiles repo
-      ansible.builtin.git:
-        repo: https://github.com/vmorganp/dotfiles.git
-        dest: /home/morgan/dotfiles
+    # - name: Clone dotfiles repo
+    #   ansible.builtin.git:
+    #     repo: https://github.com/vmorganp/dotfiles.git
+    #     dest: /home/morgan/dotfiles
 
     ####################################################################
     ######## install and remove i3 because it sets up the nix one nicely
     ####################################################################
 
-    - name: install stuff that should be out of box
+    - name: install i3
       ansible.builtin.apt:
         pkg:
           - i3
@@ -64,7 +65,6 @@
         name: i3
         state: absent
       become: true
-
 
     ####################################################################
     ############################################################ flatpak
@@ -123,17 +123,17 @@
 
     - name: install docker
       ansible.builtin.apt:
-         pkg:
-           - docker-ce
-           - docker-ce-cli
-           - containerd.io
-           - docker-buildx-plugin
-           - docker-compose-plugin
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
       become: true
 
-   ####################################################################
-   ############################################################### Node
-   ####################################################################
+    ####################################################################
+    ############################################################### Node
+    ####################################################################
 
     - name: Install nvm
       become: no
@@ -151,9 +151,9 @@
       args:
         executable: /bin/bash
 
-   ####################################################################
-   ########################################################### Firewall
-   ####################################################################
+    ####################################################################
+    ########################################################### Firewall
+    ####################################################################
 
     - name: Deny everything and enable UFW
       community.general.ufw:
