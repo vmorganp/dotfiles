@@ -39,6 +39,8 @@
           - kitty
           - ufw
           - rsync
+          - obs-studio
+          - kdenlive
       become: true
 
     ####################################################################
