@@ -13,8 +13,9 @@ return {
                 diagnostics.jsonlint,
                 diagnostics.terraform_validate,
                 diagnostics.mypy,
-
-                formatting.black,
+                formatting.black.with({
+                    extra_args = { "--line-length=200" }
+                }),
                 formatting.eslint,
                 formatting.jq,
                 formatting.prettier.with({
