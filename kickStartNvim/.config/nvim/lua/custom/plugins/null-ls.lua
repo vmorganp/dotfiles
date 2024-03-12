@@ -9,18 +9,21 @@ return {
         -- local completion = null_ls.builtins.completion
         return {
             sources = {
+                -- Diagnostics
                 diagnostics.actionlint,
-                diagnostics.jsonlint,
                 diagnostics.terraform_validate,
                 diagnostics.mypy,
+                diagnostics.codespell,
+
+                -- Formatting
                 formatting.black.with({
                     extra_args = { "--line-length=200" }
                 }),
-                formatting.eslint,
-                formatting.jq,
                 formatting.prettier.with({
                     filetypes =
                     {
+                        "javascript",
+                        "typescript",
                         "html",
                         "json",
                         "yaml",

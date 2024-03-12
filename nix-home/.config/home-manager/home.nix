@@ -103,6 +103,7 @@ in
     pkgs.sqlite
     pkgs.fscrypt-experimental
     pkgs.pandoc
+    pkgs.codespell
 
     # Desktop stuff
     pkgs.i3
