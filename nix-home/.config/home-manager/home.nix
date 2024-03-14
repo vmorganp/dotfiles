@@ -83,6 +83,8 @@ in
     pkgs.gcc
     pkgs.gnumake
     # (pkgs.python310.withPackages(ps: with ps; [ boto3 botocore pip])) # I have little faith
+    # pkgs.git
+    # pkgs.virtualenv
     # pkgs.packer
     pkgs.terraform
 

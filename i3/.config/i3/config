@@ -22,14 +22,14 @@ floating_modifier $mod
 ##############################################################################
 # include $HOME/.config/i3/monitor_config # this maybe doesn't work?
 # CHONK MONITOR CONFIG
-set $monitor_left "HDMI-1"
-set $monitor_right "HDMI-0"
+set $monitor_left "HDMI-0"
+set $monitor_right "HDMI-1"
 set $monitor_middle "DP-0"
 
 # MINI PC MONITOR CONFIG
 # set $monitor_left "HDMI-1"
-set $monitor_right "HDMI-2"
-set $monitor_middle "DP-1"
+# set $monitor_right "HDMI-2"
+# set $monitor_middle "DP-1"
 
 exec --no-startup-id "~/resolution.sh"
 
