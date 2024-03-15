@@ -106,6 +106,7 @@ in
     pkgs.fscrypt-experimental
     pkgs.pandoc
     pkgs.codespell
+    pkgs.mdbook
 
     # Desktop stuff
     pkgs.i3
