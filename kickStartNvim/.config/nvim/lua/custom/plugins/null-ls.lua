@@ -17,7 +17,7 @@ return {
 
                 -- Formatting
                 formatting.black.with({
-                    extra_args = { "--line-length=90" }
+                    extra_args = { "--line-length=120" }
                 }),
                 formatting.prettier.with({
                     filetypes =
