@@ -68,7 +68,7 @@ vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = "window left" })
 vim.keymap.set('n', '<leader>wM', '<cmd>:only<CR>', { desc = "window maximize" })
 
 -- buffers
-vim.keymap.set('n', '<leader>bk', '<cmd>:bd<CR>', { desc = "buffer kill" })
+vim.keymap.set('n', '<leader>bk', '<cmd>:confirm bdelete<CR>', { desc = "buffer kill" })
 vim.keymap.set('n', '<leader>bn', '<cmd>:bnext<CR>', { desc = "buffer next" })
 vim.keymap.set('n', '<leader>bl', '<cmd>:b#<CR>', { desc = "buffer last (toggle between)" })
 vim.keymap.set('n', '<leader>bp', '<cmd>:bprev<CR>', { desc = "buffer previous" })
