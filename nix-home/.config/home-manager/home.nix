@@ -2,12 +2,13 @@
 
 # All the options
 # https://nix-community.github.io/home-manager/options.html
-let
-  pkgsUnstable = import <nixpkgs-unstable> {};
-in
-{
-  imports = [
-  ] ++ (if builtins.pathExists  ~/.config/home-manager/profilePackages.nix then [ ~/.config/home-manager/profilePackages.nix ] else []);
+let pkgsUnstable = import <nixpkgs-unstable> { };
+in {
+  imports = [ ]
+    ++ (if builtins.pathExists ~/.config/home-manager/profilePackages.nix then
+      [ ~/.config/home-manager/profilePackages.nix ]
+    else
+      [ ]);
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -24,15 +25,9 @@ in
   };
 
   services = {
-    copyq = {
-      enable = true;
-    };
-    flameshot = {
-      enable = true;
-    };
-    syncthing = {
-      enable = true;
-    };
+    copyq = { enable = true; };
+    flameshot = { enable = true; };
+    syncthing = { enable = true; };
   };
 
   fonts.fontconfig.enable = true;
@@ -65,7 +60,6 @@ in
     # Chatty things
     pkgs.discord
 
-
     # terminal tools
     # pkgs.alacritty # this has weird bugs and doesn't really work
     pkgs.tmux
@@ -73,7 +67,7 @@ in
     pkgs.lazygit
     pkgs.starship
     # pkgs.neovide # doesn't work as of 10 Oct 2023
-    (pkgs.nerdfonts.override { fonts = ["FiraMono" "IosevkaTerm"];})
+    (pkgs.nerdfonts.override { fonts = [ "FiraMono" "IosevkaTerm" ]; })
     # pkgs.docker # todo probably put more work into config for this
     pkgs.direnv
 
@@ -115,7 +109,7 @@ in
     pkgs.picom
     pkgs.dunst
     pkgs.screenkey
-    ];
+  ];
 
   programs.home-manager.enable = true;
 }
