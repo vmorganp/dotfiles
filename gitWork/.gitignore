@@ -4,3 +4,4 @@
 **/venv/*
 **/node_modules/*
 **/.null-ls*
+**/__pycache__/*
