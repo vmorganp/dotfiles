@@ -1,0 +1,30 @@
+(defcfg
+  ;; For Windows
+  input  (low-level-hook)
+  output (send-event-sink)
+
+  ;; This option tells KMonad to let non-configured keys act normal
+  fallthrough true
+)
+
+(defsrc
+    a    s    d    f    g    h    j    k    l    ;
+)
+
+(defalias
+    ctl_a (tap-hold-next-release 250 a lctl)
+    met_s (tap-hold-next-release 250 s lmet)
+    sft_d (tap-hold-next-release 250 d lsft)
+    alt_f (tap-hold-next-release 250 f lalt)
+
+    alt_j (tap-hold-next-release 250 j lalt)
+    sft_k (tap-hold-next-release 250 k lsft)
+    met_l (tap-hold-next-release 250 l lmet)
+    ctl_; (tap-hold-next-release 250 ; lctl)
+)
+
+(deflayer homerowmods
+    @ctl_a   @met_s   @sft_d  @alt_f   g   h   @alt_j   @sft_k   @met_l   @ctl_;
+)
+
+
