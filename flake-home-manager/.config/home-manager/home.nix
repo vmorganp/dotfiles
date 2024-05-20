@@ -11,11 +11,7 @@
   work.enable = true;
 
   programs = {
-    rofi = {
-      enable = true;
-      font = "FiraMono Nerd Font 14";
-      theme = "sidebar";
-    };
+    rofi.enable = true;
     firefox = {
       enable = false;
       profiles.morgan = {
@@ -27,6 +23,14 @@
           darkreader
           vimium
         ];
+      };
+    };
+    kitty = {
+      enable = true;
+      settings = {
+        font_size = 15;
+        italic_font = "IosevkaTerm NFM Italic";
+        bold_italic_font = "IosevkaTerm NFM Bold Italic";
       };
     };
   };
@@ -66,7 +70,6 @@
     (nerdfonts.override { fonts = [ "FiraMono" "IosevkaTerm" ]; })
 
     # terminal stuff
-    kitty
     tmux
     git
     lazygit
@@ -116,4 +119,30 @@
 
   # neovim
   # TODO: Figure out how to use a git submodule/nix sub-flake here
+
+  # Rice
+  # To list theme options, run
+  # nix build nixpkgs#base16-schemes&& ls ./result/share/themes
+  stylix = {
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
+    image = config.lib.stylix.pixel "base0A";
+    polarity = "dark";
+    fonts = {
+      monospace = {
+        package = pkgs.nerdfonts.override { fonts = [ "FiraMono" ]; };
+        name = "FiraMono Nerd Font Mono";
+      };
+      sizes = {
+        applications = 11;
+        desktop = 14;
+        popups = 14;
+      };
+    };
+  };
+
+  # Polybar rice
+  xdg.configFile."polybar/colors/base16.ini".text =
+    "\n    [colors]\n    background = #${config.lib.stylix.colors.base00}\n    background-alt = #${config.lib.stylix.colors.base01}\n    foreground = #${config.lib.stylix.colors.base05}\n    primary = #${config.lib.stylix.colors.base0D}\n    secondary = #${config.lib.stylix.colors.base0B}\n    alert = #${config.lib.stylix.colors.base08}\n    disabled = #${config.lib.stylix.colors.base03}\n  ";
 }
