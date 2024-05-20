@@ -32,7 +32,10 @@
     copyq.enable = true;
     flameshot.enable = true;
     syncthing.enable = true;
-    gnome-keyring.enable = true;
+    gnome-keyring = {
+      enable = true;
+      components = [ "ssh" ];
+    };
     ssh-agent.enable = true;
   };
 
