@@ -111,4 +111,7 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # neovim
+  # TODO: Figure out how to use a git submodule/nix sub-flake here
 }
