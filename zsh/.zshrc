@@ -102,10 +102,6 @@ source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 
 export GPG_TTY=$(tty)
 
-# Use gnome keyring
-#
-# export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/keyring/ssh
-
 # Allow direnv to run
 eval "$(direnv hook zsh)"
 
