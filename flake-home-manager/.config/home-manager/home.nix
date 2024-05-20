@@ -8,7 +8,6 @@
   targets.genericLinux.enable = true;
 
   programs = {
-    # ssh.enable = true; # TODO: needs more debugging
     rofi = {
       enable = true;
       font = "FiraMono Nerd Font 14";
@@ -33,7 +32,8 @@
     copyq.enable = true;
     flameshot.enable = true;
     syncthing.enable = true;
-    ssh-agent.enable = true; # TODO: needs more debugging
+    gnome-keyring.enable = true;
+    ssh-agent.enable = true;
   };
 
   fonts.fontconfig.enable = true;
@@ -91,6 +91,7 @@
     pkgs.fscrypt-experimental
     pkgs.pandoc
     pkgs.codespell
+    pkgs.kmonad
 
     # Desktop stuff
     pkgs.i3
@@ -103,6 +104,7 @@
     pkgs.dunst
     pkgs.screenkey
     pkgs.pulseaudioFull
+    # pkgs.gnome.gnome-keyring
 
   ];
 
