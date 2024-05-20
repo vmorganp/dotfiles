@@ -1,3 +1,0 @@
-export PATH=$PATH:/nix/var/nix/profiles/default/bin
-export PATH=$PATH:/home/morgan/.nix-profile/bin
-

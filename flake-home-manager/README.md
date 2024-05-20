@@ -1,10 +1,15 @@
+# THIS WAS COPIED BEFORE I MADE THIS A FLAKE SO IT'S PROBABLY KINDA WRONG
+
 # Here's a bunch of stuff you have to run to get home-manager off the ground
+
 1. clone dotfiles
-    ```
-    git clone https://github.com/vmorganp/dotfiles
-    ```
+
+   ```
+   git clone https://github.com/vmorganp/dotfiles
+   ```
 
 2. Install home-manager
+
 ```
 # Install nix
 sh <(curl -L https://nixos.org/nix/install) --daemon

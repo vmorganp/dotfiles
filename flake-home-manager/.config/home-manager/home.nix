@@ -7,6 +7,9 @@
   home.homeDirectory = "/home/morgan";
   targets.genericLinux.enable = true;
 
+  imports = [ ./modules/module-bundle.nix ];
+  work.enable = true;
+
   programs = {
     rofi = {
       enable = true;
@@ -14,7 +17,7 @@
       theme = "sidebar";
     };
     firefox = {
-      enable = true;
+      enable = false;
       profiles.morgan = {
         # nix flake show "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"
         extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
@@ -53,60 +56,59 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   nixpkgs.config.allowUnfree = true;
-  home.packages = [
+  home.packages = with pkgs; [
     # Gui apps
-    pkgs.gimp
-    pkgs.keepassxc
-    pkgs.vlc
+    gimp
+    keepassxc
+    vlc
 
     # Fonts
-    (pkgs.nerdfonts.override { fonts = [ "FiraMono" "IosevkaTerm" ]; })
+    (nerdfonts.override { fonts = [ "FiraMono" "IosevkaTerm" ]; })
 
     # terminal stuff
-    pkgs.kitty
-    pkgs.tmux
-    pkgs.git
-    pkgs.lazygit
-    pkgs.starship
-    pkgs.direnv
+    kitty
+    tmux
+    git
+    lazygit
+    starship
+    direnv
 
     # Programming languages, sdks, stuff like that
-    pkgs.go
-    pkgs.gcc
-    pkgs.gnumake
-    pkgs.terraform
+    go
+    gcc
+    gnumake
+    terraform
 
     # utils
-    pkgs.gh
-    pkgs.htop
-    pkgs.curl
-    pkgs.wget
-    pkgs.ripgrep
-    pkgs.fzf
-    pkgs.stow
-    pkgs.findutils
-    pkgs.distrobox
-    pkgs.libnotify
-    pkgs.restic
-    pkgs.bat
-    pkgs.traceroute
-    pkgs.sqlite
-    pkgs.fscrypt-experimental
-    pkgs.pandoc
-    pkgs.codespell
-    pkgs.kmonad
+    gh
+    htop
+    curl
+    wget
+    ripgrep
+    fzf
+    stow
+    findutils
+    distrobox
+    libnotify
+    restic
+    bat
+    traceroute
+    sqlite
+    fscrypt-experimental
+    pandoc
+    codespell
+    kmonad
 
     # Desktop stuff
-    pkgs.i3
-    pkgs.i3lock
-    pkgs.rofi
-    pkgs.playerctl
-    pkgs.polybarFull
-    pkgs.nitrogen
-    pkgs.picom
-    pkgs.dunst
-    pkgs.screenkey
-    pkgs.pulseaudioFull
+    i3
+    i3lock
+    playerctl
+    polybarFull
+    nitrogen
+    picom
+    dunst
+    screenkey
+    pulseaudioFull
   ];
 
   # Let Home Manager install and manage itself.
