@@ -22,6 +22,7 @@
           sponsorblock
           darkreader
           vimium
+          reddit-enhancement-suite
         ];
       };
     };
@@ -103,10 +104,12 @@
     pandoc
     codespell
     kmonad
+    flatpak
 
     # Desktop stuff
     i3
     i3lock
+    rofi
     playerctl
     polybarFull
     nitrogen
