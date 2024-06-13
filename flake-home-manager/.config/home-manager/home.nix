@@ -85,10 +85,12 @@
     # utils
     gh
     htop
+    unixtools.ifconfig
     curl
     wget
     ripgrep
     fzf
+    fd
     stow
     findutils
     distrobox

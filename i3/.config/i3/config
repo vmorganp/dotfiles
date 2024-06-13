@@ -20,16 +20,15 @@ floating_modifier $mod
 ##############################################################################
 ############################################################### Monitor Config
 ##############################################################################
-# include $HOME/.config/i3/monitor_config # this maybe doesn't work?
+# List monitors with  xrandr --query | grep " connected"
 # CHONK MONITOR CONFIG
 set $monitor_left "HDMI-0"
 set $monitor_right "HDMI-1"
 set $monitor_middle "DP-0"
 
 # MINI PC MONITOR CONFIG
-# set $monitor_left "HDMI-1"
-# set $monitor_right "HDMI-2"
-# set $monitor_middle "DP-1"
+set $monitor_right "HDMI-1"
+set $monitor_middle "DP-1"
 
 exec --no-startup-id "~/resolution.sh"
 
@@ -117,9 +116,9 @@ workspace $ws2 output $monitor_middle
 workspace $ws3 output $monitor_middle
 workspace $ws4 output $monitor_middle
 workspace $ws5 output $monitor_middle
-workspace $ws6 output $monitor_left
-workspace $ws7 output $monitor_left
-workspace $ws8 output $monitor_right
+workspace $ws6 output $monitor_middle
+workspace $ws7 output $monitor_middle
+workspace $ws8 output $monitor_middle
 workspace $ws9 output $monitor_right
 workspace $ws10 output $monitor_right
 
@@ -208,7 +207,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+w layout toggle tabbed splitv split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle

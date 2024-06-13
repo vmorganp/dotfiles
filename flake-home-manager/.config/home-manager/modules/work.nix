@@ -4,6 +4,7 @@
     home.packages = with pkgs; [
       google-chrome
       awscli2
+      aws-sam-cli
       trufflehog
       dbeaver
       packer
