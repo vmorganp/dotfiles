@@ -22,13 +22,12 @@ floating_modifier $mod
 ##############################################################################
 # List monitors with  xrandr --query | grep " connected"
 # CHONK MONITOR CONFIG
-set $monitor_left "HDMI-0"
-set $monitor_right "HDMI-1"
+set $monitor_right "HDMI-0"
 set $monitor_middle "DP-0"
 
 # MINI PC MONITOR CONFIG
-set $monitor_right "HDMI-1"
-set $monitor_middle "DP-1"
+# set $monitor_right "HDMI-1"
+# set $monitor_middle "DP-1"
 
 exec --no-startup-id "~/resolution.sh"
 
