@@ -6,7 +6,6 @@
       awscli2
       aws-sam-cli
       trufflehog
-      dbeaver
       packer
     ];
   };
