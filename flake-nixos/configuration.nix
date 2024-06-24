@@ -74,7 +74,7 @@
   users.users.morgan = {
     isNormalUser = true;
     description = "Morgan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs;
       [ ]; # go install your home-manager if you're looking here
 
@@ -98,14 +98,27 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    zsh = {
+      enable = true;
+      ohMyZsh.enable = true;
+    };
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    dconf.enable = true;
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [ thunar-volman thunar-archive-plugin ];
+    };
   };
-  programs.zsh.enable = true;
-  programs.zsh.ohMyZsh.enable = true;
 
   # List services that you want to enable:
+  services.gvfs.enable = true; # mount, trash, etc...
+  services.tumbler.enable = true; # thunar thumbnails
+  # services.udisks2.enable = true;
+  # services.devmon.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -124,4 +137,12 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 
+  # Garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+
+  virtualisation.docker.enable = true;
 }

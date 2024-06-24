@@ -97,14 +97,15 @@
     distrobox
     libnotify
     restic
-    bat
+    bat # cat better
     traceroute
     sqlite
     fscrypt-experimental
     pandoc
     codespell
-    kmonad
+    kmonad # Fancy keyboard stuff
     flatpak
+    bfg-repo-cleaner
 
     # Desktop stuff
     i3

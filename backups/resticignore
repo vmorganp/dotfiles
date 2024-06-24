@@ -1,0 +1,8 @@
+**DS_Store
+**.terraform*
+**.tfstate
+**/venv/*
+**/node_modules/*
+**/__pycache__/*
+**/.cache/*
+**/.null-ls*
