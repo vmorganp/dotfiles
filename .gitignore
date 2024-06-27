@@ -1,3 +1,4 @@
 nvim/.config/nvim/plugin/packer_compiled.lua
 nixos/hardware-*
 /polybar/.config/polybar/colors/base16.ini
+**/.env
