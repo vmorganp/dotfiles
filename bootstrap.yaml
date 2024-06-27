@@ -1,8 +1,8 @@
 ---
 # don't have ansible yet?
 # just run this
-# sudo apt-get install -y python3 python3-pip curl && <TODO some other stuff> && ansible-playbook bootstrap.yaml -i localhost, --ask-become-pass
-- name: Deploy home server
+# sudo apt-get install -y python3 python3-pip curl pipx && pipx install --include-deps ansible  && ansible-playbook bootstrap.yaml -i localhost, --ask-become-pass
+- name: Deploy Desktop Machine
   hosts: all
   gather_facts: false
   connection: local
@@ -10,13 +10,13 @@
     ####################################################################
     #################################################### change my shell
     ####################################################################
-
-    - name: change user shell to zsh
-      become: yes
-      user:
-        name: "morgan" # this is not ideal but its my un so whatever
-        shell: /bin/zsh
-
+    #
+    # - name: change user shell to zsh
+    #   become: yes
+    #   user:
+    #     name: "morgan" # this is not ideal but its my un so whatever
+    #     shell: /bin/zsh
+    #
     ####################################################################
     ######################################################### base utils
     ####################################################################

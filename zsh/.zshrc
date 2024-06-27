@@ -78,6 +78,9 @@ alias flup="flatpak update && flatpak uninstall --unused"
 ## all
 alias up="nup && hms && ngc && apup && flup"
 
+# Pip use virtualenv and install requirements
+alias ,pipreq="virtualenv venv && source ./venv/bin/activate && pip3 install -r requirements.txt"
+
 
 #determines search program for fzf
 if type ag &> /dev/null; then
