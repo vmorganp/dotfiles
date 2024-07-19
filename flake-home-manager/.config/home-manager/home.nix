@@ -12,28 +12,28 @@
 
   programs = {
     rofi.enable = true;
-    firefox = {
-      enable = false;
-      profiles.morgan = {
-        # nix flake show "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"
-        extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-          bitwarden
-          ublock-origin
-          sponsorblock
-          darkreader
-          vimium
-          reddit-enhancement-suite
-        ];
-      };
-    };
-    kitty = {
-      enable = true;
-      settings = {
-        font_size = 15;
-        italic_font = "IosevkaTerm NFM Italic";
-        bold_italic_font = "IosevkaTerm NFM Bold Italic";
-      };
-    };
+    # firefox = {
+    #   enable = false;
+    #   profiles.morgan = {
+    #     # nix flake show "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"
+    #     extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+    #       bitwarden
+    #       ublock-origin
+    #       sponsorblock
+    #       darkreader
+    #       vimium
+    #       reddit-enhancement-suite
+    #     ];
+    #   };
+    # };
+    # kitty = {
+    #   enable = true;
+    #   settings = {
+    #     font_size = 15;
+    #     italic_font = "IosevkaTerm NFM Italic";
+    #     bold_italic_font = "IosevkaTerm NFM Bold Italic";
+    #   };
+    # };
   };
 
   services = {
@@ -66,6 +66,7 @@
     gimp
     keepassxc
     vlc
+    obsidian
 
     # Fonts
     (nerdfonts.override { fonts = [ "FiraMono" "IosevkaTerm" ]; })
@@ -106,6 +107,7 @@
     kmonad # Fancy keyboard stuff
     flatpak
     bfg-repo-cleaner
+    arandr
 
     # Desktop stuff
     i3
@@ -146,6 +148,18 @@
         desktop = 14;
         popups = 14;
       };
+    };
+    autoEnable = false;
+    targets = {
+      kitty.enable = true;
+      firefox.enable = true;
+      dunst.enable = true;
+      gnome.enable = true;
+      i3.enable = true;
+      lazygit.enable = true;
+      rofi.enable = true;
+      tmux.enable = true;
+      xresources.enable = true;
     };
   };
 

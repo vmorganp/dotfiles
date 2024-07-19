@@ -9,6 +9,9 @@
 [includeIf "gitdir:~/dotfiles/"]
     path = .gitconfig-personal
 
+[includeIf "gitdir:~/nixvim/"]
+    path = .gitconfig-personal
+
 [commit]
         gpgsign = true
 [gpg]
