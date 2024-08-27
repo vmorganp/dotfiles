@@ -1,5 +1,5 @@
 # If interactive
 if [[ $- == *i* ]] && [[ -z "$TMUX" ]]
 then
-    tmux -2 attach || tmux -2
+    tmux -2u attach || tmux -2u
 fi
