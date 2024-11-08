@@ -21,7 +21,6 @@ plugins=(
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
-HIST_STAMPS="mm/dd/yyyy"
 . ~/z.sh
 
 # Aliases
@@ -40,7 +39,7 @@ gcleanup ()
 {
     echo "size before: $(du -sh .)"
     echo "branches before: $(git branch | wc -l)"
-    # delete local braches that have been merged in origin
+    # delete local branches that have been merged in origin
     git fetch origin --prune
     # garbage collection
     git gc
@@ -80,6 +79,8 @@ alias up="nup && hms && ngc && apup && flup"
 
 # Pip use virtualenv and install requirements
 alias ,pipreq="virtualenv venv && source ./venv/bin/activate && pip3 install -r requirements.txt"
+alias ,pipuse="virtualenv venv && source ./venv/bin/activate"
+alias ,findFiles='v "$(rg --files --hidden ~ | fzf)"'
 
 
 #determines search program for fzf

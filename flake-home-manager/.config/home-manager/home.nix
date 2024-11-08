@@ -77,9 +77,11 @@
     lazygit
     starship
     direnv
+    neofetch
+    tldr
 
     # Programming languages, sdks, stuff like that
-    go
+    # go
     gcc
     gnumake
     terraform
@@ -108,6 +110,7 @@
     flatpak
     bfg-repo-cleaner
     arandr
+    dbeaver-bin
 
     # Desktop stuff
     i3
