@@ -108,3 +108,6 @@ export GPG_TTY=$(tty)
 # Allow direnv to run
 eval "$(direnv hook zsh)"
 
+# Ripgrep config
+export RIPGREP_CONFIG_PATH="$HOME/dotfiles/ripgrep/ripgreprc"
+

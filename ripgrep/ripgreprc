@@ -1,0 +1,9 @@
+
+# Add my 'web' type.
+--type-add
+web:*.{html,css,js}*
+
+--ignore-file=/home/morgan/dotfiles/git/.gitignore
+--ignore-file=/home/morgan/dotfiles/ripgrep/.rgignore
+--smart-case
+--hidden

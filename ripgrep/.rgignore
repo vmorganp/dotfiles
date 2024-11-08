@@ -1,0 +1,16 @@
+**/.mozilla/*
+**/.oh-my-zsh/*
+**/.rustup/*
+**/.vscode/*
+**/.tldrc/*
+**/pipx/*
+**/undo/*
+**/go/pkg/*
+**/.cargo/*
+**.gz
+**.trashinfo
+**/Trash/*
+**/.trash/*
+**/.local/*
+**/bin/*
+**/.config/Code/*
