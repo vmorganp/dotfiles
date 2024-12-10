@@ -6,12 +6,11 @@
 **/venvs/*
 **/node_modules/*
 **/.null-ls*
-**/.cache/*
-**/cache/*
 **/.m2/*
 **/.git/*
 **.tar
 **.zip
 **.tar.gz
 **.class
-**.class
+**/*cache/*
+**/*Cache/*

@@ -47,7 +47,12 @@
     ssh-agent.enable = true;
   };
 
-  fonts.fontconfig.enable = true;
+  fonts = {
+    fontconfig = {
+      enable = true;
+      defaultFonts.monospace = [ "DejaVuSansM Nerd Font Mono" ];
+    };
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -69,7 +74,8 @@
     obsidian
 
     # Fonts
-    (nerdfonts.override { fonts = [ "FiraMono" "IosevkaTerm" ]; })
+    pkgs.nerd-fonts.dejavu-sans-mono
+    pkgs.nerd-fonts.iosevka-term
 
     # terminal stuff
     tmux
@@ -82,8 +88,8 @@
 
     # Programming languages, sdks, stuff like that
     # go
-    gcc
-    gnumake
+    # gcc
+    # gnumake
     terraform
 
     # utils
@@ -143,8 +149,8 @@
     polarity = "dark";
     fonts = {
       monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "FiraMono" ]; };
-        name = "FiraMono Nerd Font Mono";
+        package = pkgs.nerd-fonts.dejavu-sans-mono;
+        name = "DejaVuSansM Nerd Font Mono";
       };
       sizes = {
         applications = 11;

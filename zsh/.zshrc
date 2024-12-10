@@ -75,7 +75,7 @@ alias apup="sudo apt update && sudo apt upgrade -y && sudo apt clean"
 ## flatpak
 alias flup="flatpak update && flatpak uninstall --unused"
 ## all
-alias up="nup && hms && ngc && apup && flup"
+alias up="nup && hms && apup && flup"
 
 # Pip use virtualenv and install requirements
 alias ,pipreq="virtualenv venv && source ./venv/bin/activate && pip3 install -r requirements.txt"
