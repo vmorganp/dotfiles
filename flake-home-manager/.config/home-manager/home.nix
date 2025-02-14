@@ -140,11 +140,10 @@
   # Rice
   # To list theme options, run
   # nix build nixpkgs#base16-schemes&& ls ./result/share/themes
+
   stylix = {
     enable = true;
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
+    base16Scheme = ./colors.yaml;
     image = config.lib.stylix.pixel "base0A";
     polarity = "dark";
     fonts = {

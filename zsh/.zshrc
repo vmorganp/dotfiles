@@ -60,10 +60,13 @@ alias v="~/nixvim/result/bin/nvim"
 alias lg="lazygit"
 alias nvd="neovide"
 
+alias ,todo="v ~/todo.txt"
+
+
 ## Terraform aliases
 alias tf=terraform
-alias tfclean="rm -rf .terraform;rm .terraform.lock.hcl"
-alias tfunlock="terraform force-unlock"
+alias ,tfclean="rm -rf .terraform;rm .terraform.lock.hcl"
+alias ,tfunlock="terraform force-unlock"
 
 # package management aliases
 ## nix

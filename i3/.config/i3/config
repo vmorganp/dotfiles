@@ -227,7 +227,7 @@ bindsym $mod+q kill
 assign [class="Spotify"] $ws4
 assign [class="KeePassXC"] $ws5
 assign [class="Alacritty"] $ws10
-assign [class="kitty"] $ws10
+assign [class="kitty"] $ws2
 assign [class="neovide"] $ws2
 
 ##############################################################################
