@@ -129,6 +129,7 @@
     dunst
     screenkey
     pulseaudioFull
+    neovim
   ];
 
   # Let Home Manager install and manage itself.

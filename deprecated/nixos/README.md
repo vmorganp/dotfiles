@@ -1,4 +1,4 @@
-# Some commmands that are nice to have handy for nixos
+# Some commands that are nice to have handy for nixos
 
 # Pull updates
 `sudo nix-channel --update`

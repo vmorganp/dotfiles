@@ -31,7 +31,6 @@ alias venvactivate="source .venv/bin/activate"
 
 # Git aliases
 alias gdl="git diff HEAD^ HEAD"
-alias git diff="echo 'run gdl to see the diff between current and last commit'; git diff;"
 alias gitundo="git reset --soft HEAD~1"
 alias greset="git fetch && git branch --show-current | xargs -I{} git reset --hard remotes/origin/{}"
 alias emptycommit="git commit --allow-empty -m \"update pull request (empty commit)\""
@@ -61,6 +60,7 @@ alias lg="lazygit"
 alias nvd="neovide"
 
 alias ,todo="v ~/todo.txt"
+alias ,codespell='codespell --interactive 3 --write $(git ls-files)'
 
 
 ## Terraform aliases

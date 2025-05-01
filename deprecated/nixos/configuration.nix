@@ -183,7 +183,7 @@
 # List packages installed in system profile. To search, run:
 # $ nix search wget
   environment.systemPackages = with pkgs; [
-# Destkop stuff
+# Desktop stuff
       pkgs.xfce.xfce4-panel # desktop stuff
       pkgs.xfce.xfce4-i3-workspaces-plugin # desktop stuff
       pkgs.xfce.xfce4-pulseaudio-plugin # desktop stuff
