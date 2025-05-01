@@ -703,7 +703,8 @@ vim.o.expandtab = true -- always use spaces instead of tabs
 vim.o.showmatch = true -- bracket matching
 vim.o.smartindent = true
 vim.o.wrap = false
-vim.o.foldmethod="indent"
+vim.o.foldmethod="indent" -- fold based on indent
+vim.o.foldlevelstart = 99 -- but open them all by default
 
 ----------------------------------------------------------------------- KEYBINDS
 -- basics
