@@ -159,7 +159,7 @@ require("lazy").setup({
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
-			{ "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
+			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 		},
 		config = function()
 			-- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -267,7 +267,7 @@ require("lazy").setup({
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
-			{ "j-hui/fidget.nvim",       opts = {} },
+			{ "j-hui/fidget.nvim", opts = {} },
 
 			-- Allows extra capabilities provided by blink.cmp
 			"saghen/blink.cmp",
@@ -443,7 +443,7 @@ require("lazy").setup({
 			local servers = {
 				-- clangd = {},
 				gopls = {},
-				pyright = {},
+				jedi_language_server = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
@@ -486,6 +486,9 @@ require("lazy").setup({
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
+			})
+			vim.list_extend(ensure_installed, {
+				"codespell", -- Used to format Lua code
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -564,7 +567,7 @@ require("lazy").setup({
 				-- <c-k>: Toggle signature help
 				--
 				-- See :h blink-cmp-config-keymap for defining your own keymap
-				preset = "default",
+				preset = "super-tab",
 
 				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
 				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -579,11 +582,11 @@ require("lazy").setup({
 			completion = {
 				-- By default, you may press `<c-space>` to show the documentation.
 				-- Optionally, set `auto_show = true` to show the documentation after a delay.
-				documentation = { auto_show = false, auto_show_delay_ms = 500 },
+				documentation = { auto_show = false, auto_show_delay_ms = 200 },
 			},
 
 			sources = {
-				default = { "lsp", "path", "snippets", "lazydev" },
+				default = { "lsp", "path", "snippets", "buffer", "lazydev" }, --"omni", },
 				providers = {
 					lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
 				},
@@ -598,7 +601,7 @@ require("lazy").setup({
 			-- the rust implementation via `'prefer_rust_with_warning'`
 			--
 			-- See :h blink-cmp-config-fuzzy for more information
-			fuzzy = { implementation = "lua" },
+			fuzzy = { implementation = "prefer_rust_with_warning" },
 
 			-- Shows a signature help window while you type arguments for a function
 			signature = { enabled = true },
@@ -695,16 +698,18 @@ require("lazy").setup({
 -- vim: ts=2 sts=2 sw=2 et
 
 ----------------------------------------------------------------------- SETTINGS
+
 vim.o.colorcolumn = "80" -- show line in col 80 to warn about long lines
-vim.o.tabstop = 4        -- tab = 4 spaces
+vim.o.tabstop = 4 -- tab = 4 spaces
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.expandtab = true -- always use spaces instead of tabs
 vim.o.showmatch = true -- bracket matching
 vim.o.smartindent = true
 vim.o.wrap = false
-vim.o.foldmethod="indent" -- fold based on indent
+vim.o.foldmethod = "indent" -- fold based on indent
 vim.o.foldlevelstart = 99 -- but open them all by default
+vim.o.spelllang = "en_us"
 
 ----------------------------------------------------------------------- KEYBINDS
 -- basics
@@ -719,10 +724,10 @@ vim.keymap.set("v", "<leader>ff", function()
 end, { desc = "range format" })
 
 vim.keymap.set("n", "<leader>ot", function()
-	MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
-	MiniFiles.reveal_cwd()
+	Snacks.explorer.open()
 end, { desc = "open tree" })
 vim.keymap.set("n", "<leader>gg", "<cmd>:Neogit<CR>", { desc = "Git Client" })
+vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float() end, { desc = "show error float" })
 
 -- searching
 vim.keymap.set("n", "<leader>/", "<cmd>:Pick buf_lines current<CR>", { desc = "[()]earch [b]uffer" })
@@ -745,6 +750,7 @@ vim.keymap.set("n", "<leader>tc", "<cmd>:tabnew<CR>", { desc = "create tab" })
 vim.keymap.set("n", "<leader>th", "<cmd>:tabprevious<CR>", { desc = "tab left" })
 vim.keymap.set("n", "<leader>tl", "<cmd>:tabnext<CR>", { desc = "tab next" })
 vim.keymap.set("n", "<leader>tn", "<cmd>:tabnext<CR>", { desc = "tab next" })
+vim.keymap.set("n", "<leader>tx", "<cmd>:tabclose<CR>", { desc = "tab close" })
 
 -- windows
 vim.keymap.set("n", "<leader>wj", "<C-w>j", { desc = "window down" })
@@ -762,7 +768,7 @@ vim.keymap.set("n", "<leader>be", "<cmd>:enew!<CR>", { desc = "buffer empty" })
 vim.keymap.set("n", "<leader>bo", '<cmd>:%bd|e#|bd#|normal `"<CR>', { desc = "buffer only (close all others)" })
 
 -- quickfix
-vim.keymap.set("n", "<leader>td", "<cmd>:TodoTelescope<CR>", { desc = "Quickfix List" })
+vim.keymap.set("n", "<leader>td", "<cmd>:Pick hipatterns<CR>", { desc = "Quickfix List" })
 vim.keymap.set("n", "<leader>ql", "<cmd>:copen<CR>", { desc = "Quickfix List" })
 vim.keymap.set("n", "<leader>qp", "<cmd>:cprevious<CR>zz", { desc = "Quickfix Previous" })
 vim.keymap.set("n", "<leader>qn", "<cmd>:cnext<CR>zz", { desc = "Quickfix Next" })
