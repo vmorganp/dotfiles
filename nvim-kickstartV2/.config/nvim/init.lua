@@ -159,7 +159,7 @@ require("lazy").setup({
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
-			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+			{ "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
 		},
 		config = function()
 			-- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -267,7 +267,7 @@ require("lazy").setup({
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
-			{ "j-hui/fidget.nvim", opts = {} },
+			{ "j-hui/fidget.nvim",       opts = {} },
 
 			-- Allows extra capabilities provided by blink.cmp
 			"saghen/blink.cmp",
@@ -486,6 +486,7 @@ require("lazy").setup({
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
+				"pyright",
 			})
 			vim.list_extend(ensure_installed, {
 				"codespell", -- Used to format Lua code
@@ -541,6 +542,9 @@ require("lazy").setup({
 				opts = {},
 			},
 			"folke/lazydev.nvim",
+			"ribru17/blink-cmp-spell",
+
+
 		},
 		--- @module 'blink.cmp'
 		--- @type blink.cmp.Config
@@ -586,9 +590,34 @@ require("lazy").setup({
 			},
 
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "lazydev" }, --"omni", },
+				default = { "lsp", "path", "snippets", "buffer", "lazydev", "spell" }, --"omni", },
 				providers = {
 					lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
+					spell = {
+						name = 'Spell',
+						module = 'blink-cmp-spell',
+						opts = {
+							-- EXAMPLE: Only enable source in `@spell` captures, and disable it
+							-- in `@nospell` captures.
+							enable_in_context = function()
+								local curpos = vim.api.nvim_win_get_cursor(0)
+								local captures = vim.treesitter.get_captures_at_pos(
+									0,
+									curpos[1] - 1,
+									curpos[2] - 1
+								)
+								local in_spell_capture = false
+								for _, cap in ipairs(captures) do
+									if cap.capture == 'spell' then
+										in_spell_capture = true
+									elseif cap.capture == 'nospell' then
+										return false
+									end
+								end
+								return in_spell_capture
+							end,
+						},
+					},
 				},
 			},
 
@@ -601,7 +630,7 @@ require("lazy").setup({
 			-- the rust implementation via `'prefer_rust_with_warning'`
 			--
 			-- See :h blink-cmp-config-fuzzy for more information
-			fuzzy = { implementation = "prefer_rust_with_warning" },
+			fuzzy = { implementation = "prefer_rust_with_warning", sorts = { "exact", "score", "sort_text" } },
 
 			-- Shows a signature help window while you type arguments for a function
 			signature = { enabled = true },
@@ -699,17 +728,21 @@ require("lazy").setup({
 
 ----------------------------------------------------------------------- SETTINGS
 
-vim.o.colorcolumn = "80" -- show line in col 80 to warn about long lines
-vim.o.tabstop = 4 -- tab = 4 spaces
-vim.o.shiftwidth = 4
-vim.o.softtabstop = 4
-vim.o.expandtab = true -- always use spaces instead of tabs
-vim.o.showmatch = true -- bracket matching
-vim.o.smartindent = true
-vim.o.wrap = false
-vim.o.foldmethod = "indent" -- fold based on indent
-vim.o.foldlevelstart = 99 -- but open them all by default
-vim.o.spelllang = "en_us"
+vim.opt.colorcolumn = "80" -- show line in col 80 to warn about long lines
+vim.opt.tabstop = 4        -- tab = 4 spaces
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true -- always use spaces instead of tabs
+vim.opt.showmatch = true -- bracket matching
+vim.opt.smartindent = true
+vim.opt.wrap = false
+vim.opt.foldmethod = "indent" -- fold based on indent
+vim.opt.foldlevelstart = 99   -- but open them all by default
+
+-- Spell checking
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
+vim.opt.spelloptions = "camel"
 
 ----------------------------------------------------------------------- KEYBINDS
 -- basics
@@ -724,22 +757,33 @@ vim.keymap.set("v", "<leader>ff", function()
 end, { desc = "range format" })
 
 vim.keymap.set("n", "<leader>ot", function()
-	Snacks.explorer.open()
+	-- Snacks.explorer.reveal()
+	local explorer_pickers = Snacks.picker.get({ source = "explorer" })
+	if #explorer_pickers == 0 then
+	Snacks.explorer.reveal()
+		-- Snacks.picker.explorer.reveal()
+		-- elseif explorer_pickers[1]:is_focused() then
+		-- 	explorer_pickers[1]:close()
+	else
+		Snacks.picker.explorer()
+	end
 end, { desc = "open tree" })
 vim.keymap.set("n", "<leader>gg", "<cmd>:Neogit<CR>", { desc = "Git Client" })
+vim.keymap.set("n", "<leader>gb", function() require('gitsigns').blame() end, { desc = "Git Client" })
 vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float() end, { desc = "show error float" })
 
 -- searching
-vim.keymap.set("n", "<leader>/", "<cmd>:Pick buf_lines current<CR>", { desc = "[()]earch [b]uffer" })
-vim.keymap.set("n", "<leader>sf", "<cmd>:Pick files<CR>", { desc = "[s]earch [f]iles" })
-vim.keymap.set("n", "<leader>sg", "<cmd>:Pick grep_live<CR>", { desc = "[s]earch [g]rep" })
-vim.keymap.set("n", "<leader>sb", "<cmd>:Pick buffers<CR>", { desc = "[s]earch [b]uffers" })
-vim.keymap.set("n", "<leader>sh", "<cmd>:Pick help<CR>", { desc = "[s]earch [h]elp" })
-vim.keymap.set("n", "<leader>sc", "<cmd>:Pick commands<CR>", { desc = "[s]earch [c]ommands" })
-vim.keymap.set("n", "<leader>sk", "<cmd>:Pick keymaps<CR>", { desc = "[s]earch [k]eybinds" })
-vim.keymap.set("n", "<leader>sd", "<cmd>:Pick diagnostic<CR>", { desc = "[S]earch [D]iagnostics" })
-vim.keymap.set("n", "<leader>sr", "<cmd>:Pick resume<CR>", { desc = "[s]earch [r]esume" })
-vim.keymap.set("n", "<leader>?", "<cmd>:Pick oldfiles<CR>", { desc = "recent files" })
+vim.keymap.set("n", "<leader>/", require('telescope.builtin').current_buffer_fuzzy_find,
+	{ desc = "search current buffer" })
+vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = "[s]earch [f]iles" })
+vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = "search dir" })
+vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[s]earch [b]elp' })
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[s]earch [h]elp' })
+vim.keymap.set('n', '<leader>sc', require('telescope.builtin').commands, { desc = '[S]earch [C]ommands' })
+vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = "search keymaps" })
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = "[S]earch [D]iagnostics" })
+vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = "search resume" })
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = "recent files" })
 
 -- toggles
 vim.keymap.set("n", "<leader>Tw", "<cmd>:set wrap!<CR>", { desc = "toggle word wrap" })

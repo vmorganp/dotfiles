@@ -52,23 +52,27 @@ return {
 			return "%2l:%-2v"
 		end
 
-		local animate = require("mini.animate")
-		local animation_time = 60
-		animate.setup({
-			cursor = {
-				timing = animate.gen_timing.linear({ duration = animation_time, unit = "total" }),
-			},
-			scroll = {
-				timing = animate.gen_timing.linear({ duration = animation_time, unit = "total" }),
-			},
-			open = {
-				timing = animate.gen_timing.linear({ duration = animation_time, unit = "total" }),
-			},
-		})
+		-- local animate = require("mini.animate")
+		-- local animation_time = 60
+		-- animate.setup({
+		-- 	cursor = {
+		-- 		timing = animate.gen_timing.linear({ duration = animation_time, unit = "total" }),
+		-- 	},
+		-- 	scroll = {
+		-- 		timing = animate.gen_timing.linear({ duration = animation_time, unit = "total" }),
+		-- 	},
+		-- 	open = {
+		-- 		timing = animate.gen_timing.linear({ duration = animation_time, unit = "total" }),
+		-- 	},
+		-- })
 
 		-- niceties
 		require("mini.trailspace").setup()
-		require("mini.basics").setup()
+		require("mini.basics").setup({
+			mappings={
+				option_toggle_prefix="<Leader>T"
+			}
+		})
 		require("mini.extra").setup()
 		local miniclue = require("mini.clue")
 		miniclue.setup({

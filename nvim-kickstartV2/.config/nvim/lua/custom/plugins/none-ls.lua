@@ -10,14 +10,17 @@ return {
 				-- diagnostics
 				null_ls.builtins.diagnostics.actionlint,
 				null_ls.builtins.diagnostics.codespell,
-				null_ls.builtins.diagnostics.ruff,
 				null_ls.builtins.diagnostics.terraform_validate,
+				null_ls.builtins.diagnostics.cfn_lint,
 
 				-- formatting
 				null_ls.builtins.formatting.prettier,
 				null_ls.builtins.formatting.black,
 				null_ls.builtins.formatting.terraform_fmt,
 				null_ls.builtins.formatting.nixfmt,
+
+				-- completion
+				null_ls.builtins.completion.spell,
 			},
 		})
 	end,
