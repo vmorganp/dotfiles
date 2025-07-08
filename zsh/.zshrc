@@ -85,6 +85,8 @@ alias ,pipreq="virtualenv venv && source ./venv/bin/activate && pip3 install -r 
 alias ,pipuse="virtualenv venv && source ./venv/bin/activate"
 alias ,findFiles='v "$(rg --files --hidden ~ | fzf)"'
 
+# Mac wm stuff
+alias ,maci3="yabai --start-service && skhd --start-service && sudo yabai --load-sa"
 
 #determines search program for fzf
 if type ag &> /dev/null; then

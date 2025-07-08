@@ -27,6 +27,12 @@ shift + cmd - l : yabai -m window --warp east
 shift + cmd - j : yabai -m window --warp south
 shift + cmd - k : yabai -m window --warp north
 
+# Directional movement - with arrows
+shift + cmd - left : yabai -m window --warp west
+shift + cmd - right : yabai -m window --warp east
+shift + cmd - down : yabai -m window --warp south
+shift + cmd - up : yabai -m window --warp north
+
 
 cmd + shift - f : yabai -m window --toggle zoom-fullscreen
 

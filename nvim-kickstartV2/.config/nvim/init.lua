@@ -770,7 +770,7 @@ vim.keymap.set("n", "<leader>ot", function()
 	-- Snacks.explorer.reveal()
 	local explorer_pickers = Snacks.picker.get({ source = "explorer" })
 	if #explorer_pickers == 0 then
-	Snacks.explorer.reveal()
+		Snacks.explorer.reveal()
 		-- Snacks.picker.explorer.reveal()
 		-- elseif explorer_pickers[1]:is_focused() then
 		-- 	explorer_pickers[1]:close()
