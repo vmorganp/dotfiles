@@ -192,7 +192,17 @@ require("lazy").setup({
 				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 				--   },
 				-- },
-				-- pickers = {}
+				pickers = {
+					find_files = {
+						hidden = true,
+					},
+					live_grep = {
+						additional_args = { "--hidden" }
+					},
+					grep_string = {
+						additional_args = { "--hidden" }
+					}
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
@@ -777,7 +787,7 @@ vim.keymap.set("n", "<leader>/", require('telescope.builtin').current_buffer_fuz
 	{ desc = "search current buffer" })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = "[s]earch [f]iles" })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = "search dir" })
-vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[s]earch [b]elp' })
+vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[s]earch [b]uffers' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[s]earch [h]elp' })
 vim.keymap.set('n', '<leader>sc', require('telescope.builtin').commands, { desc = '[S]earch [C]ommands' })
 vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = "search keymaps" })

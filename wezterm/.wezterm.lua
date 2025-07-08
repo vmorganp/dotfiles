@@ -5,7 +5,7 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices.
-config.font_size = 18
+config.font_size = 24
 config.hide_tab_bar_if_only_one_tab = true
 
 config.max_fps = 60
@@ -29,17 +29,6 @@ config.window_padding = {
   bottom = 0,
 }
 config.enable_scroll_bar = false
-
-config.font = wezterm.font_with_fallback {
-    {
-        family = 'DejaVuSansM Nerd Font Mono',
-        weight = 'Regular'
-    },
-    {
-        family = 'IosevkaTerm NFM Italic',
-        italic = true,
-    },
-}
 
 -- Finally, return the configuration to wezterm:
 return config

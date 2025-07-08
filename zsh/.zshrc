@@ -55,7 +55,7 @@ gcleanup ()
 # App aliases
 alias tmux="tmux -2"
 alias ta="tmux -u attach"
-alias v="~/nixvim/result/bin/nvim"
+alias v="nvim"
 alias lg="lazygit"
 alias nvd="neovide"
 

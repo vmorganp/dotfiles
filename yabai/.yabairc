@@ -1,0 +1,5 @@
+yabai -m config                   \
+    layout bsp                    \
+    window_gap     20             \
+    mouse_follows_focus on        \
+    window_animation_duration 0.0 \
