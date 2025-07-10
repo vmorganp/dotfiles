@@ -2,6 +2,15 @@
 **.terraform*
 **.tfstate
 **/venv/*
+**/virtualenv/*
+**/venvs/*
 **/node_modules/*
 **/.null-ls*
-**/__pycache__/*
+**/.m2/*
+**/.git/*
+**.tar
+**.zip
+**.tar.gz
+**.class
+**/*cache/*
+**/*Cache/*
