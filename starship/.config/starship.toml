@@ -23,7 +23,7 @@ up_to_date = "[\\[UP2DT\\]](bg:green fg:bold black)"
 untracked = "[\\[UNTRCKD\\]](bg:red fg:bold black)"
 stashed = "[\\[STSHD\\]](bg:yellow fg:bold black)"
 modified = "[\\[CHGD\\]](bg:yellow fg:bold black)"
-staged = '[\\[++\($count\)\\]](bg:green fg:bold black)'
+staged = '[++\($count\)](bg:green fg:bold black)'
 renamed = "[\\[RNMD\\]](bg:yellow fg:bold black)"
 deleted = "[\\[DLTD\\]](bg:yellow fg:bold black)"
 

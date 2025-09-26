@@ -130,6 +130,11 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	{
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+		config = true
+	},
 
 	-- NOTE: Plugins can specify dependencies.
 	--
@@ -467,6 +472,8 @@ require("lazy").setup({
 				-- clangd = {},
 				gopls = {},
 				jedi_language_server = {},
+				pyright = {},
+				gh_actions_ls = {},
 				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
@@ -475,8 +482,6 @@ require("lazy").setup({
 				--
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
 				ts_ls = {},
-				--
-
 				lua_ls = {
 					-- cmd = { ... },
 					-- filetypes = { ... },
@@ -509,7 +514,6 @@ require("lazy").setup({
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
-				"pyright",
 			})
 			vim.list_extend(ensure_installed, {
 				"codespell", -- Used to format Lua code
@@ -555,17 +559,18 @@ require("lazy").setup({
 					-- `friendly-snippets` contains a variety of premade snippets.
 					--    See the README about individual language/framework/plugin snippets:
 					--    https://github.com/rafamadriz/friendly-snippets
-					-- {
-					--   'rafamadriz/friendly-snippets',
-					--   config = function()
-					--     require('luasnip.loaders.from_vscode').lazy_load()
-					--   end,
-					-- },
+					{
+						'rafamadriz/friendly-snippets',
+						config = function()
+							require('luasnip.loaders.from_vscode').lazy_load()
+						end,
+					},
 				},
 				opts = {},
 			},
 			"folke/lazydev.nvim",
 			"ribru17/blink-cmp-spell",
+			"moyiz/blink-emoji.nvim",
 
 
 		},
@@ -613,9 +618,10 @@ require("lazy").setup({
 			},
 
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "lazydev", "spell" }, --"omni", },
+				default = { "lsp", "path", "snippets", "buffer", "lazydev", "spell", "emoji" }, --"omni", },
 				providers = {
 					lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
+					lsp = { fallbacks = {} },
 					spell = {
 						name = 'Spell',
 						module = 'blink-cmp-spell',
@@ -641,6 +647,26 @@ require("lazy").setup({
 							end,
 						},
 					},
+					emoji = {
+						module = "blink-emoji",
+						name = "Emoji",
+						score_offset = 15, -- Tune by preference
+						opts = {
+							insert = true, -- Insert emoji (default) or complete its name
+							---@type string|table|fun():table
+							trigger = function()
+								return { ":" }
+							end,
+						},
+						should_show_items = function()
+							return vim.tbl_contains(
+							-- Enable emoji completion only for git commits and markdown.
+							-- By default, enabled for all file-types.
+								{ "gitcommit", "markdown" },
+								vim.o.filetype
+							)
+						end,
+					}
 				},
 			},
 
@@ -780,17 +806,14 @@ vim.keymap.set("v", "<leader>ff", function()
 end, { desc = "range format" })
 
 vim.keymap.set("n", "<leader>ot", function()
-	-- Snacks.explorer.reveal()
 	local explorer_pickers = Snacks.picker.get({ source = "explorer" })
 	if #explorer_pickers == 0 then
-		Snacks.explorer.reveal()
-		-- Snacks.picker.explorer.reveal()
-		-- elseif explorer_pickers[1]:is_focused() then
-		-- 	explorer_pickers[1]:close()
+		Snacks.explorer()
 	else
-		Snacks.picker.explorer()
+		explorer_pickers[1]:close()
 	end
 end, { desc = "open tree" })
+
 vim.keymap.set("n", "<leader>gg", "<cmd>:Neogit<CR>", { desc = "Git Client" })
 vim.keymap.set("n", "<leader>gb", function() require('gitsigns').blame() end, { desc = "Git Client" })
 vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float() end, { desc = "show error float" })
@@ -807,6 +830,7 @@ vim.keymap.set('n', '<leader>sc', require('fzf-lua').commands, { desc = '[S]earc
 vim.keymap.set('n', '<leader>sk', require('fzf-lua').keymaps, { desc = "search keymaps" })
 vim.keymap.set('n', '<leader>sd', require('fzf-lua').diagnostics_workspace, { desc = "[S]earch [D]iagnostics" })
 vim.keymap.set('n', '<leader>sr', require('fzf-lua').resume, { desc = "search resume" })
+vim.keymap.set('n', '<leader>so', require('fzf-lua').nvim_options, { desc = "search options" })
 vim.keymap.set('n', '<leader>?', require('fzf-lua').oldfiles, { desc = "recent files" })
 
 vim.keymap.set('n', '<leader>gr', require('fzf-lua').lsp_references, { desc = "goto references" })
@@ -844,5 +868,18 @@ vim.keymap.set("n", "<leader>qp", "<cmd>:cprevious<CR>zz", { desc = "Quickfix Pr
 vim.keymap.set("n", "<leader>qn", "<cmd>:cnext<CR>zz", { desc = "Quickfix Next" })
 vim.keymap.set("n", "<leader>qc", "<cmd>:cexpr []<CR>", { desc = "Quickfix Clear" })
 
+-- make test
+vim.keymap.set("n", "<leader>mt", "<cmd>:make test<CR>", { desc = "Make Test" })
+vim.keymap.set("n", "<leader>mb", "<cmd>:make build<CR>", { desc = "Make Build" })
+
 -- stupid meme
 vim.keymap.set("n", "<leader>hm", "<cmd>:colorscheme oldSchoolTerminal<CR>", { desc = "HackerMan" })
+
+-- neovide stuff
+if vim.g.neovide == true then
+	vim.api.nvim_set_keymap("n", "<C-+>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>",
+		{ silent = true })
+	vim.api.nvim_set_keymap("n", "<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>",
+		{ silent = true })
+	vim.api.nvim_set_keymap("n", "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
+end

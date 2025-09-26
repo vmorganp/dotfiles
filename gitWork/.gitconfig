@@ -1,7 +1,7 @@
 [user]
         email = 100230514+MorganPattersonSignet@users.noreply.github.com
         name = MorganPattersonSignet
-        signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILV5Sdvy+J/weOy6AsBBZDENQZKlG2JkHv8IhWOBlvoa 100230514+MorganPattersonSignet
+        signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINXWIuipujQNPL2GCU/ANK9POWZoghu9ctrI20URa6YI 100230514+MorganPattersonSignet@users.noreply.github.com
 
 [includeIf "gitdir:~/Documents/personal/"]
     path = .gitconfig-personal
@@ -19,4 +19,4 @@
 [core]
 	excludesfile = ~/dotfiles/gitWork/.gitignore
 [diff]
-        tool=/home/morgan/nixvim/result/bin/nvim
+        tool=nvim

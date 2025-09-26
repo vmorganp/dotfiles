@@ -8,7 +8,7 @@ return {
 		null_ls.setup({
 			sources = {
 				-- diagnostics
-				null_ls.builtins.diagnostics.actionlint,
+				-- null_ls.builtins.diagnostics.actionlint,
 				null_ls.builtins.diagnostics.codespell,
 				null_ls.builtins.diagnostics.terraform_validate,
 				null_ls.builtins.diagnostics.cfn_lint,

@@ -8,7 +8,6 @@ return {
 		require("mini.files").setup()
 		require("mini.pick").setup()
 		require("mini.diff").setup()
-		require("mini.pairs").setup()
 
 		-- Visual flair
 		--

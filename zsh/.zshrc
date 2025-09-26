@@ -116,3 +116,6 @@ eval "$(direnv hook zsh)"
 # Ripgrep config
 export RIPGREP_CONFIG_PATH="$HOME/dotfiles/ripgrep/ripgreprc"
 
+# Stop AWS from doing the annoying less thing
+export AWS_PAGER=""
+
