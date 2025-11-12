@@ -514,6 +514,9 @@ require("lazy").setup({
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
+				"pyright",
+				"dockerfile-language-server",
+				"docker-compose-language-service",
 			})
 			vim.list_extend(ensure_installed, {
 				"codespell", -- Used to format Lua code
