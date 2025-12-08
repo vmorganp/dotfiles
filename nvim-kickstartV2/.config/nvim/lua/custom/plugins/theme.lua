@@ -16,15 +16,22 @@
 --   end
 -- }
 --
+
 return {
 	"Shatur/neovim-ayu",
 	lazy = false,
-	priority = 1000,
-	opts = {},
 	config = function()
 		require("ayu").setup({
 			overrides = {
 				Normal = { bg = "#000000" },
+				NormalFloat = { bg = "#000000" },
+				ColorColumn = { bg = "#000000" },
+				SignColumn = { bg = "#000000" },
+				Folded = { bg = "#000000" },
+				FoldColumn = { bg = "#000000" },
+				CursorLine = { bg = "#000000" },
+				CursorColumn = { bg = "#000000" },
+				VertSplit = { bg = "#000000" },
 			},
 		})
 		vim.cmd([[colorscheme ayu-dark]])

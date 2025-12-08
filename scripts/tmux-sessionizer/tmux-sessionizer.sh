@@ -3,8 +3,11 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    # selected=$(find ~/Documents/Projects ~/Documents/personal ~/Documents/tools ~ -mindepth 1 -maxdepth 1 -type d | fzf)
-    selected=$(find ~ -maxdepth 5 -type f -path '*/.git/HEAD' | rev | cut -c 11- | rev | fzf)
+    if command -v "fd" >/dev/null 2>&1; then
+        selected=$(fd -H -I --max-depth 5 --prune --type d "^.git$" ~ | rev | cut -c 7- | rev | fzf)
+    else
+        selected=$(find ~ -maxdepth 5 -type f -path '*/.git/HEAD' | rev | cut -c 11- | rev | fzf)
+    fi
 fi
 
 if [[ -z $selected ]]; then
