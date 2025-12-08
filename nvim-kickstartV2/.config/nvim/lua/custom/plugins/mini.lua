@@ -6,8 +6,33 @@ return {
 		require("mini.comment").setup()
 		require("mini.notify").setup()
 		require("mini.files").setup()
-		require("mini.pick").setup()
 		require("mini.diff").setup()
+
+		-- Centered on screen
+		local win_config = function()
+			local height = math.floor(0.7 * vim.o.lines)
+			local width = math.floor(0.7 * vim.o.columns)
+			return {
+				anchor = "NW",
+				height = height,
+				width = width,
+				row = math.floor(0.5 * (vim.o.lines - height)),
+				col = math.floor(0.5 * (vim.o.columns - width)),
+			}
+		end
+
+		-- send selected to qf
+		local choose_all = function()
+			local mappings = MiniPick.get_picker_opts().mappings
+			vim.api.nvim_input(mappings.mark_all .. mappings.choose_marked)
+		end
+
+		require("mini.pick").setup({
+			mappings = {
+				choose_all = { char = "<C-q>", func = choose_all },
+			},
+			window = { config = win_config },
+		})
 
 		-- Visual flair
 		--
@@ -21,28 +46,6 @@ return {
 			},
 		})
 
-		-- require("mini.base16").setup({
-		-- 	palette = {
-		-- 		base00 = "#000000",
-		-- 		-- base01 = '#000000',
-		-- 		base01 = "#131721",
-		-- 		base02 = "#272D38",
-		-- 		base03 = "#3E4B59",
-		-- 		base04 = "#BFBDB6",
-		-- 		base05 = "#E6E1CF",
-		-- 		base06 = "#E6E1CF",
-		-- 		base07 = "#F3F4F5",
-		-- 		base08 = "#F07178",
-		-- 		base09 = "#FF8F40",
-		-- 		base0A = "#FFB454",
-		-- 		base0B = "#B8CC52",
-		-- 		base0C = "#95E6CB",
-		-- 		base0D = "#59C2FF",
-		-- 		base0E = "#D2A6FF",
-		-- 		base0F = "#E6B673",
-		-- 	},
-		-- })
-
 		require("mini.surround").setup()
 		local statusline = require("mini.statusline")
 		statusline.setup({ use_icons = vim.g.have_nerd_font })
@@ -51,26 +54,12 @@ return {
 			return "%2l:%-2v"
 		end
 
-		-- local animate = require("mini.animate")
-		-- local animation_time = 60
-		-- animate.setup({
-		-- 	cursor = {
-		-- 		timing = animate.gen_timing.linear({ duration = animation_time, unit = "total" }),
-		-- 	},
-		-- 	scroll = {
-		-- 		timing = animate.gen_timing.linear({ duration = animation_time, unit = "total" }),
-		-- 	},
-		-- 	open = {
-		-- 		timing = animate.gen_timing.linear({ duration = animation_time, unit = "total" }),
-		-- 	},
-		-- })
-
 		-- niceties
 		require("mini.trailspace").setup()
 		require("mini.basics").setup({
-			mappings={
-				option_toggle_prefix="<Leader>T"
-			}
+			mappings = {
+				option_toggle_prefix = "<Leader>T",
+			},
 		})
 		require("mini.extra").setup()
 		local miniclue = require("mini.clue")

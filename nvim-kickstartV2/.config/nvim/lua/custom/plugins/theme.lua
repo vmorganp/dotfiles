@@ -15,7 +15,7 @@
 --     vim.cmd [[colorscheme tokyonight-night]]
 --   end
 -- }
-
+--
 return {
 	"Shatur/neovim-ayu",
 	lazy = false,
@@ -24,11 +24,9 @@ return {
 	config = function()
 		require("ayu").setup({
 			overrides = {
-        Normal = { bg = "#000000" },
- }
-
+				Normal = { bg = "#000000" },
+			},
 		})
-		vim.cmd [[colorscheme ayu-dark]]
-	end
+		vim.cmd([[colorscheme ayu-dark]])
+	end,
 }
-
