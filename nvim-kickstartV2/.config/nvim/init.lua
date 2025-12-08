@@ -336,7 +336,7 @@ require("lazy").setup({
 			local servers = {
 				-- clangd = {},
 				gopls = {},
-				ruff = {},
+				pyright = {},
 				gh_actions_ls = {},
 				-- copilot = {},
 				jsonls = {},
@@ -382,6 +382,7 @@ require("lazy").setup({
 				"stylua", -- Used to format Lua code
 				"dockerfile-language-server",
 				"docker-compose-language-service",
+				"black",
 			})
 			vim.list_extend(ensure_installed, {
 				"codespell", -- Used to format Lua code

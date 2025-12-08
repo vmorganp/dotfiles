@@ -29,7 +29,6 @@ return {
 				SignColumn = { bg = "#000000" },
 				Folded = { bg = "#000000" },
 				FoldColumn = { bg = "#000000" },
-				CursorLine = { bg = "#000000" },
 				CursorColumn = { bg = "#000000" },
 				VertSplit = { bg = "#000000" },
 			},
