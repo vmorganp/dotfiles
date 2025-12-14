@@ -1,1 +1,1 @@
-{ pkgs, lib, ... }: { imports = [ ./work.nix ]; }
+{ pkgs, lib, ... }: { imports = [ ./work.nix ./custom-desktop.nix ]; }

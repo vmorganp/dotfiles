@@ -7,6 +7,7 @@
       trufflehog
       packer
       buildpack
+      terraform
     ];
   };
 }
