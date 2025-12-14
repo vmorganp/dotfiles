@@ -1,7 +1,7 @@
 add_newline = false
 
 [directory]
-style = "bg:blue fg:bold black"
+style = "bg:blue fg:black"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -11,21 +11,21 @@ truncate_to_repo = true
 format = "[ $symbol$branch(:$remote_branch) ]($style)"
 truncation_length = 30
 truncation_symbol = ""
-style = "bg:purple fg:bold black"
+style = "bg:purple fg:black"
 
 [git_status]
 format = '($all_status$ahead_behind)'
-conflicted = "[\\[CNFLCT\\]](bg:yellow fg:bold black)"
-ahead = "[\\[AHEAD ${count}\\]](bg:yellow fg:bold black)"
-behind = "[\\[BEHIND ${count}\\]](bg:yellow fg:bold black)"
-diverged = "[DVRGD ${ahead_count}⇣${behind_count}](bg:yellow fg:bold black)"
-up_to_date = "[\\[UP2DT\\]](bg:green fg:bold black)"
-untracked = "[\\[UNTRCKD\\]](bg:red fg:bold black)"
-stashed = "[\\[STSHD\\]](bg:yellow fg:bold black)"
-modified = "[\\[CHGD\\]](bg:yellow fg:bold black)"
-staged = '[++\($count\)](bg:green fg:bold black)'
-renamed = "[\\[RNMD\\]](bg:yellow fg:bold black)"
-deleted = "[\\[DLTD\\]](bg:yellow fg:bold black)"
+conflicted = "[\\[CNFLCT\\]](bg:yellow fg:black)"
+ahead = "[\\[AHEAD ${count}\\]](bg:yellow fg:black)"
+behind = "[\\[BEHIND ${count}\\]](bg:yellow fg:black)"
+diverged = "[DVRGD ${ahead_count}⇣${behind_count}](bg:yellow fg:black)"
+up_to_date = "[\\[UP2DT\\]](bg:green fg:black)"
+untracked = "[\\[UNTRCKD\\]](bg:red fg:black)"
+stashed = "[\\[STSHD\\]](bg:yellow fg:black)"
+modified = "[\\[CHGD\\]](bg:yellow fg:black)"
+staged = '[++\($count\)](bg:green fg:black)'
+renamed = "[\\[RNMD\\]](bg:yellow fg:black)"
+deleted = "[\\[DLTD\\]](bg:yellow fg:black)"
 
 # the aws module should be able to check if credentials are valid or not
 # unfortunately it doesn't

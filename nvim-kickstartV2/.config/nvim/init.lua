@@ -6,49 +6,17 @@ vim.g.maplocalleader = " "
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
-
--- Make line numbers default
-vim.opt.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
-
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = "a"
-
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
 end)
 
--- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
-
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
-vim.opt.timeoutlen = 300
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -60,19 +28,19 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
 
--- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-
--- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
--- instead raise a dialog asking if you wish to save the current file(s)
--- See `:help 'confirm'`
-vim.opt.confirm = true
+vim.opt.breakindent = true
+vim.opt.confirm = true       -- ask for confirmation instead of failing for certain things
+vim.opt.cursorline = true    -- Show which line your cursor is on
+vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
+vim.opt.mouse = "a" -- Enable mouse mode, for when I'm being bad
+vim.opt.number = true -- Make line numbers default
+vim.opt.scrolloff = 10       -- keep 10 lines above and below
+vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
+vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
+vim.opt.startofline = true   -- move to first character of line after big movements
+vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time
+vim.opt.undofile = true -- Save undo history
+vim.opt.updatetime = 250 -- Decrease update time
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -168,7 +136,7 @@ require("lazy").setup({
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
-			{ "j-hui/fidget.nvim", opts = {} },
+			{ "j-hui/fidget.nvim",       opts = {} },
 
 			-- Allows extra capabilities provided by blink.cmp
 			"saghen/blink.cmp",
@@ -218,7 +186,7 @@ require("lazy").setup({
 
 					map("<leader>rn", vim.lsp.buf.rename, "Rename")
 					map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
-					map("gd", vim.lsp.buf.definition, "Goto Definition", {silent=true})
+					map("gd", vim.lsp.buf.definition, "Goto Definition", { silent = true })
 					map("gI", vim.lsp.buf.implementation, "Goto Implementation")
 
 					-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
@@ -454,7 +422,14 @@ require("lazy").setup({
 
 			completion = {
 				documentation = { auto_show = false, auto_show_delay_ms = 200 },
-				menu = { draw = {columns = { { "label", "label_description", gap = 1 }, { "kind_icon", gap=1, "kind", "source_name" }}}}
+				menu = {
+					draw = {
+						columns = {
+							{ "label",     "label_description", gap = 1 },
+							{ "kind_icon", gap = 1,             "kind", "source_name" },
+						},
+					},
+				},
 			},
 
 			sources = {
@@ -464,8 +439,8 @@ require("lazy").setup({
 					lsp = { fallbacks = {} },
 					spell = {
 						score_offset = -1,
-						name = 'Spell',
-						module = 'blink-cmp-spell',
+						name = "Spell",
+						module = "blink-cmp-spell",
 						opts = {
 							-- EXAMPLE: Only enable source in `@spell` captures, and disable it
 							-- in `@nospell` captures.
@@ -580,6 +555,15 @@ require("lazy").setup({
 			start = "🚀",
 			task = "📌",
 			lazy = "💤 ",
+		},
+	},
+	change_detection = { notify = false },
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"tutor",
+				"netrwPlugin",
+			},
 		},
 	},
 })
@@ -712,3 +696,15 @@ if vim.g.neovide == true then
 	)
 	vim.api.nvim_set_keymap("n", "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
 end
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+	group = vim.api.nvim_create_augroup("mariasolos/last_location", { clear = true }), -- ty maria
+	desc = "Go to the last location when opening a buffer",
+	callback = function(args)
+		local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+		local line_count = vim.api.nvim_buf_line_count(args.buf)
+		if mark[1] > 0 and mark[1] <= line_count then
+			vim.cmd('normal! g`"zz')
+		end
+	end,
+})
