@@ -628,10 +628,9 @@ vim.keymap.set("n", "<leader>ss", function()
 	require("mini.extra").pickers.lsp({ scope = "document_symbol" })
 end, { desc = "search symbols" })
 
-vim.keymap.set("n", "<leader>sf", require("mini.extra").pickers.git_files, { desc = "search git files" })
-vim.keymap.set("n", "<leader>sF", require("mini.pick").builtin.files, { desc = "search files" })
+vim.keymap.set("n", "<leader>sf", require("mini.pick").builtin.files, { desc = "search files" })
 vim.keymap.set("n", "<leader>sg", require("mini.pick").builtin.grep_live, { desc = "search dir" })
-vim.keymap.set("n", "<leader>sb", require("mini.pick").builtin.buffers, { desc = "search buffers" })
+vim.keymap.set("n", "<leader><leader>", require("mini.pick").builtin.buffers, { desc = "search buffers" })
 vim.keymap.set("n", "<leader>sh", require("mini.pick").builtin.help, { desc = "search help" })
 vim.keymap.set("n", "<leader>sc", require("mini.extra").pickers.commands, { desc = "search commands" })
 vim.keymap.set("n", "<leader>sk", require("mini.extra").pickers.keymaps, { desc = "search keymaps" })
@@ -643,6 +642,7 @@ vim.keymap.set("n", "<leader>?", require("mini.extra").pickers.oldfiles, { desc 
 -- toggles
 vim.keymap.set("n", "<leader>Tw", "<cmd>:set wrap!<CR>", { desc = "toggle word wrap" })
 vim.keymap.set("n", "<leader>Tn", "<cmd>:set number!<CR>", { desc = "toggle line numbers" })
+vim.keymap.set("n", "<leader>Tz", require("snacks").zen.zen, { desc = "toggle zen" })
 
 -- tabs
 vim.keymap.set("n", "<leader>tc", "<cmd>:tabnew<CR>", { desc = "create tab" })

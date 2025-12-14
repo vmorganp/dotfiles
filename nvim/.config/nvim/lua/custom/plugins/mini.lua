@@ -5,7 +5,8 @@ return {
 		require("mini.ai").setup({ n_lines = 500 })
 		require("mini.comment").setup()
 		require("mini.notify").setup()
-		require("mini.files").setup()
+		require("mini.tabline").setup()
+
 		require("mini.diff").setup()
 
 		-- Centered on screen

@@ -11,10 +11,11 @@ config.hide_tab_bar_if_only_one_tab = true
 config.max_fps = 60
 config.animation_fps = 60
 front_end = "WebGpu" -- use this on apple silicon macs
-config.color_scheme = "Ayu Dark (Gogh)"
-config.colors = {
-    background = "black",
-}
+config.color_scheme = "Catppuccin Mocha"
+-- config.color_scheme = "Ayu Dark (Gogh)"
+-- config.colors = {
+--     background = "black",
+-- }
 
 -- de-pad
 config.window_frame = {
