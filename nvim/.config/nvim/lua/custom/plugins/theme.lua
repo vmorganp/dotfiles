@@ -1,5 +1,5 @@
 return {
-	"Shatur/nevim-ayu",
+	"Shatur/neovim-ayu",
 	name = "ayu",
 	priority = 1000,
 	config = function()
