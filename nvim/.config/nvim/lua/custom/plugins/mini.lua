@@ -29,6 +29,7 @@ return {
 		end
 
 		require("mini.pick").setup({
+			hidden=true,
 			mappings = {
 				choose_all = { char = "<C-q>", func = choose_all },
 			},

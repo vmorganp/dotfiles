@@ -10,20 +10,23 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 # export PIP_REQUIRE_VIRTUALENV=true
 
-plugins=(
-    git
-    fancy-ctrl-z
-    gh
-    aws
-    poetry
-)
+###################################################### WE HAVE OH MY ZSH AT HOME
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=5000
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-source $ZSH/oh-my-zsh.sh
-. ~/z.sh
+autoload -U compinit; compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-# Aliases
+######################################################################## Aliases
 alias gpg2=gpg
 alias cdp="cd ~/Documents/Projects"
 alias acl="clear"
@@ -105,17 +108,26 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+
+###################################################################### Nix stuff
 # nix home manager
-source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+# source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+# Allow direnv to run
+# eval "$(direnv hook zsh)"
 
 export GPG_TTY=$(tty)
 
-# Allow direnv to run
-eval "$(direnv hook zsh)"
 
 # Ripgrep config
-export RIPGREP_CONFIG_PATH="$HOME/dotfiles/ripgrep/ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/dotfiles/ripgrep/.ripgreprc"
 
 # Stop AWS from doing the annoying less thing
 export AWS_PAGER=""
 
+# pacman
+alias ,pacInstall="sudo pacman -Sy"
+alias ,pacSearch="pacman -Ss"
+alias ,pacUpdate="pacman -Syu"
+
+# bitwarden SSH keys
+export SSH_AUTH_SOCK=/home/$(whoami)/.bitwarden-ssh-agent.sock
