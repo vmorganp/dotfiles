@@ -6,6 +6,12 @@ return {
 		require("mini.comment").setup()
 		require("mini.notify").setup()
 		require("mini.tabline").setup()
+		require("mini.basics").setup({
+			options = {
+				basic = true,
+				extra_ui = true,
+			},
+		})
 
 		require("mini.diff").setup()
 
@@ -29,7 +35,7 @@ return {
 		end
 
 		require("mini.pick").setup({
-			hidden=true,
+			hidden = true,
 			mappings = {
 				choose_all = { char = "<C-q>", func = choose_all },
 			},

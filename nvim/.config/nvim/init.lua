@@ -6,7 +6,6 @@ vim.g.maplocalleader = " "
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
-
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  See `:help 'clipboard'`
@@ -14,33 +13,14 @@ vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
 end)
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
-
-vim.opt.breakindent = true
-vim.opt.confirm = true       -- ask for confirmation instead of failing for certain things
-vim.opt.cursorline = true    -- Show which line your cursor is on
-vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
-vim.opt.mouse = "a" -- Enable mouse mode, for when I'm being bad
-vim.opt.number = true -- Make line numbers default
-vim.opt.scrolloff = 10       -- keep 10 lines above and below
-vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
-vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
-vim.opt.startofline = true   -- move to first character of line after big movements
-vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time
-vim.opt.undofile = true -- Save undo history
-vim.opt.updatetime = 250 -- Decrease update time
+vim.opt.cursorline = true     -- Show which line your cursor is on
+vim.opt.startofline = true    -- move to first character of line after big movements
+vim.opt.inccommand = "split"  -- Preview substitutions live, as you type!
+vim.opt.scrolloff = 10        -- keep 10 lines above and below
+vim.opt.timeoutlen = 300      -- Decrease mapped sequence wait time
+vim.opt.updatetime = 250      -- Decrease update time
+vim.opt.winborder = "rounded" -- Decrease update time
+-- A bunch of these are configured in ./lua/custom/plugins/mini.lua in "basics"
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -423,6 +403,7 @@ require("lazy").setup({
 			completion = {
 				documentation = { auto_show = false, auto_show_delay_ms = 200 },
 				menu = {
+					-- border="single",
 					draw = {
 						columns = {
 							{ "label",     "label_description", gap = 1 },
@@ -479,10 +460,11 @@ require("lazy").setup({
 							)
 						end,
 					},
+					snippets = {
+						-- score_offset=15
+					},
 				},
 			},
-
-			snippets = { preset = "luasnip" },
 
 			-- Blink.cmp includes an optional, recommended rust fuzzy matcher,
 			-- which automatically downloads a prebuilt binary when enabled.
@@ -638,6 +620,9 @@ vim.keymap.set("n", "<leader>sd", require("mini.extra").pickers.diagnostic, { de
 vim.keymap.set("n", "<leader>sr", require("mini.pick").builtin.resume, { desc = "search resume" })
 vim.keymap.set("n", "<leader>so", require("mini.extra").pickers.options, { desc = "search options" })
 vim.keymap.set("n", "<leader>?", require("mini.extra").pickers.oldfiles, { desc = "recent files" })
+vim.keymap.set("n", "<leader>sw", function()
+	require("mini.pick").builtin.grep({ pattern = vim.fn.expand("<cword>") })
+end, { desc = "search word" })
 
 -- toggles
 vim.keymap.set("n", "<leader>Tw", "<cmd>:set wrap!<CR>", { desc = "toggle word wrap" })
@@ -656,6 +641,7 @@ vim.keymap.set("n", "<leader>wj", "<C-w>j", { desc = "window down" })
 vim.keymap.set("n", "<leader>wk", "<C-w>k", { desc = "window up" })
 vim.keymap.set("n", "<leader>wl", "<C-w>l", { desc = "window right" })
 vim.keymap.set("n", "<leader>wh", "<C-w>h", { desc = "window left" })
+vim.keymap.set("n", "<leader>wk", "<C-w>c", { desc = "window kill" })
 vim.keymap.set("n", "<leader>wM", "<cmd>:only<CR>", { desc = "window maximize" })
 
 -- buffers
@@ -664,7 +650,19 @@ vim.keymap.set("n", "<leader>bn", "<cmd>:bnext<CR>", { desc = "buffer next" })
 vim.keymap.set("n", "<leader>bl", "<cmd>:b#<CR>", { desc = "buffer last (toggle between)" })
 vim.keymap.set("n", "<leader>bp", "<cmd>:bprev<CR>", { desc = "buffer previous" })
 vim.keymap.set("n", "<leader>be", "<cmd>:enew!<CR>", { desc = "buffer empty" })
-vim.keymap.set("n", "<leader>bo", '<cmd>:%bd|e#|bd#|normal `"<CR>', { desc = "buffer only (close all others)" })
+
+-- This cannot be accomplished like this '<cmd>:%bd|e#|bd#|normal `"<CR>'
+-- because I don't want to close the current buffer and re-run lsp and whatnot
+vim.keymap.set("n", "<leader>bo", function()
+	local current_buf = vim.api.nvim_get_current_buf()
+	local bufs = vim.api.nvim_list_bufs()
+
+	for _, buf_id in ipairs(bufs) do
+		if buf_id ~= current_buf and vim.api.nvim_buf_is_loaded(buf_id) then
+			vim.api.nvim_buf_delete(buf_id, { force = false })
+		end
+	end
+end, { desc = "buffer only (close all others)" })
 
 -- quickfix
 vim.keymap.set("n", "<leader>td", "<cmd>:Pick hipatterns<CR>", { desc = "Quickfix List" })

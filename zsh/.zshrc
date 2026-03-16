@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/.cargo/bin
-
 # doesn't spam me with my own name
 DEFAULT_USER="morgan"
 
@@ -8,6 +5,7 @@ DEFAULT_USER="morgan"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
+export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/.cargo/bin
 # export PIP_REQUIRE_VIRTUALENV=true
 
 ###################################################### WE HAVE OH MY ZSH AT HOME
@@ -63,6 +61,7 @@ alias lg="lazygit"
 alias nvd="neovide"
 
 alias ,todo="v ~/todo.txt"
+alias ,timesheet='python3 /Users/13582995/Documents/projects/timesheet/main.py'
 alias ,codespell='codespell --interactive 3 --write $(git ls-files)'
 
 
@@ -84,12 +83,15 @@ alias flup="flatpak update && flatpak uninstall --unused"
 alias up="nup && hms && apup && flup"
 
 # Pip use virtualenv and install requirements
-alias ,pipreq="virtualenv venv && source ./venv/bin/activate && pip3 install -r requirements.txt"
-alias ,pipuse="virtualenv venv && source ./venv/bin/activate"
+alias ,pipreq="source ./venv/bin/activate && pip3 install -r requirements.txt"
+alias ,pipuse="python3 -m virtualenv venv && source ./venv/bin/activate"
 alias ,findFiles='v "$(rg --files --hidden ~ | fzf)"'
 
 # Mac wm stuff
 alias ,maci3="yabai --start-service && skhd --start-service && sudo yabai --load-sa"
+
+# Fuzzy find browser marks
+alias ,bookmarks="cat $HOME/Library/Application\ Support/BraveSoftware/Brave-Browser/Default/Bookmarks | jq '.roots.bookmark_bar.children.[].url' | fzf | xargs -I{} /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser {}"
 
 #determines search program for fzf
 if type ag &> /dev/null; then
@@ -105,8 +107,8 @@ eval "$(starship init zsh)"
 
 # node version manager
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 
 ###################################################################### Nix stuff
@@ -131,3 +133,9 @@ alias ,pacUpdate="pacman -Syu"
 
 # bitwarden SSH keys
 export SSH_AUTH_SOCK=/home/$(whoami)/.bitwarden-ssh-agent.sock
+# # pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+cat ~/todo.txt
