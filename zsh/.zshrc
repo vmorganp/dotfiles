@@ -1,5 +1,6 @@
 # doesn't spam me with my own name
 DEFAULT_USER="morgan"
+export EDITOR="nvim"
 
 # Other path stuff
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
@@ -138,4 +139,13 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
 
+source <(fzf --zsh)
+
+# ctrl+x ctrl+e edits current command
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
+
 cat ~/todo.txt
+
