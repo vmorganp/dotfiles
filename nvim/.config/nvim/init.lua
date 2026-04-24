@@ -13,12 +13,12 @@ vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
 end)
 
-vim.opt.cursorline = true     -- Show which line your cursor is on
-vim.opt.startofline = true    -- move to first character of line after big movements
-vim.opt.inccommand = "split"  -- Preview substitutions live, as you type!
-vim.opt.scrolloff = 10        -- keep 10 lines above and below
-vim.opt.timeoutlen = 300      -- Decrease mapped sequence wait time
-vim.opt.updatetime = 250      -- Decrease update time
+vim.opt.cursorline = true -- Show which line your cursor is on
+vim.opt.startofline = true -- move to first character of line after big movements
+vim.opt.inccommand = "split" -- Preview substitutions live, as you type!
+vim.opt.scrolloff = 10 -- keep 10 lines above and below
+vim.opt.timeoutlen = 300 -- Decrease mapped sequence wait time
+vim.opt.updatetime = 250 -- Decrease update time
 vim.opt.winborder = "rounded" -- Decrease update time
 -- A bunch of these are configured in ./lua/custom/plugins/mini.lua in "basics"
 
@@ -116,10 +116,7 @@ require("lazy").setup({
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			-- Useful status updates for LSP.
-			{ "j-hui/fidget.nvim",       opts = {} },
-
-			-- Allows extra capabilities provided by blink.cmp
-			"saghen/blink.cmp",
+			{ "j-hui/fidget.nvim", opts = {} },
 		},
 		config = function()
 			-- Brief aside: **What is LSP?**
@@ -169,19 +166,6 @@ require("lazy").setup({
 					map("gd", vim.lsp.buf.definition, "Goto Definition", { silent = true })
 					map("gI", vim.lsp.buf.implementation, "Goto Implementation")
 
-					-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
-					---@param client vim.lsp.Client
-					---@param method vim.lsp.protocol.Method
-					---@param bufnr? integer some lsp support methods only in specific files
-					---@return boolean
-					local function client_supports_method(client, method, bufnr)
-						if vim.fn.has("nvim-0.11") == 1 then
-							return client:supports_method(method, bufnr)
-						else
-							return client.supports_method(method, { bufnr = bufnr })
-						end
-					end
-
 					-- The following two autocommands are used to highlight references of the
 					-- word under your cursor when your cursor rests there for a little while.
 					--    See `:help CursorHold` for information about when this is executed
@@ -190,11 +174,7 @@ require("lazy").setup({
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if
 						client
-						and client_supports_method(
-							client,
-							vim.lsp.protocol.Methods.textDocument_documentHighlight,
-							event.buf
-						)
+						and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
 					then
 						local highlight_augroup =
 							vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
@@ -228,9 +208,9 @@ require("lazy").setup({
 					-- This may be unwanted, since they displace some of your code
 					if
 						client
-						and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
+						and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
 					then
-						map("<leader>th", function()
+						map("<leader>TH", function()
 							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 						end, "Toggle Inlay Hints")
 					end
@@ -268,9 +248,9 @@ require("lazy").setup({
 
 			-- LSP servers and clients are able to communicate to each other what features they support.
 			--  By default, Neovim doesn't support everything that is in the LSP specification.
-			--  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
-			--  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
+			--  When you add plugins that extend LSP, Neovim now has *more* capabilities.
+			--  So, we create new capabilities and then broadcast that to the servers.
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -353,171 +333,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-
-	{ -- Autocompletion
-		"saghen/blink.cmp",
-		event = "VimEnter",
-		version = "1.*",
-		dependencies = {
-			-- Snippet Engine
-			{
-				"L3MON4D3/LuaSnip",
-				version = "2.*",
-				build = (function()
-					-- Build Step is needed for regex support in snippets.
-					-- This step is not supported in many windows environments.
-					-- Remove the below condition to re-enable on windows.
-					if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-						return
-					end
-					return "make install_jsregexp"
-				end)(),
-				dependencies = {
-					-- `friendly-snippets` contains a variety of premade snippets.
-					--    See the README about individual language/framework/plugin snippets:
-					--    https://github.com/rafamadriz/friendly-snippets
-					{
-						"rafamadriz/friendly-snippets",
-						config = function()
-							require("luasnip.loaders.from_vscode").lazy_load()
-						end,
-					},
-				},
-				opts = {},
-			},
-			"folke/lazydev.nvim",
-			"ribru17/blink-cmp-spell",
-			"moyiz/blink-emoji.nvim",
-		},
-		--- @module 'blink.cmp'
-		--- @type blink.cmp.Config
-		opts = {
-			keymap = {
-				preset = "super-tab",
-			},
-
-			appearance = {
-				nerd_font_variant = "mono",
-			},
-
-			completion = {
-				documentation = { auto_show = false, auto_show_delay_ms = 200 },
-				menu = {
-					-- border="single",
-					draw = {
-						columns = {
-							{ "label",     "label_description", gap = 1 },
-							{ "kind_icon", gap = 1,             "kind", "source_name" },
-						},
-					},
-				},
-			},
-
-			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "lazydev", "spell", "emoji" }, --"omni", },
-				providers = {
-					lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
-					lsp = { fallbacks = {} },
-					spell = {
-						score_offset = -1,
-						name = "Spell",
-						module = "blink-cmp-spell",
-						opts = {
-							-- EXAMPLE: Only enable source in `@spell` captures, and disable it
-							-- in `@nospell` captures.
-							enable_in_context = function()
-								local curpos = vim.api.nvim_win_get_cursor(0)
-								local captures = vim.treesitter.get_captures_at_pos(0, curpos[1] - 1, curpos[2] - 1)
-								local in_spell_capture = false
-								for _, cap in ipairs(captures) do
-									if cap.capture == "spell" then
-										in_spell_capture = true
-									elseif cap.capture == "nospell" then
-										return false
-									end
-								end
-								return in_spell_capture
-							end,
-						},
-					},
-					emoji = {
-						module = "blink-emoji",
-						name = "Emoji",
-						score_offset = 15, -- Tune by preference
-						opts = {
-							insert = true, -- Insert emoji (default) or complete its name
-							---@type string|table|fun():table
-							trigger = function()
-								return { ":" }
-							end,
-						},
-						should_show_items = function()
-							return vim.tbl_contains(
-							-- Enable emoji completion only for git commits and markdown.
-							-- By default, enabled for all file-types.
-								{ "gitcommit", "markdown" },
-								vim.o.filetype
-							)
-						end,
-					},
-					snippets = {
-						-- score_offset=15
-					},
-				},
-			},
-
-			-- Blink.cmp includes an optional, recommended rust fuzzy matcher,
-			-- which automatically downloads a prebuilt binary when enabled.
-			--
-			-- By default, we use the Lua implementation instead, but you may enable
-			-- the rust implementation via `'prefer_rust_with_warning'`
-			--
-			-- See :h blink-cmp-config-fuzzy for more information
-			fuzzy = { implementation = "prefer_rust_with_warning", sorts = { "exact", "score", "sort_text" } },
-
-			-- Shows a signature help window while you type arguments for a function
-			signature = { enabled = true },
-		},
-	},
-
-	{ -- Highlight, edit, and navigate code
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		main = "nvim-treesitter.configs", -- Sets main module to use for opts
-		opts = {
-			ensure_installed = {
-				"bash",
-				"python",
-				"c",
-				"diff",
-				"html",
-				"lua",
-				"luadoc",
-				"markdown",
-				"markdown_inline",
-				"query",
-				"vim",
-				"vimdoc",
-			},
-			-- Autoinstall languages that are not installed
-			auto_install = true,
-			highlight = {
-				enable = true,
-				-- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-				--  If you are experiencing weird indenting issues, add the language to
-				--  the list of additional_vim_regex_highlighting and disabled languages for indent.
-				additional_vim_regex_highlighting = { "ruby" },
-			},
-			indent = { enable = true, disable = { "ruby" } },
-		},
-		-- There are additional nvim-treesitter modules that you can use to interact
-		-- with nvim-treesitter. You should go explore a few and see what interests you:
-		--
-		--    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-		--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-		--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-	},
-
 	{ import = "custom.plugins" },
 }, {
 	ui = {
@@ -553,7 +368,7 @@ require("lazy").setup({
 ----------------------------------------------------------------------- SETTINGS
 
 vim.opt.colorcolumn = "80" -- show line in col 80 to warn about long lines
-vim.opt.tabstop = 4        -- tab = 4 spaces
+vim.opt.tabstop = 4 -- tab = 4 spaces
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true -- always use spaces instead of tabs
@@ -561,7 +376,10 @@ vim.opt.showmatch = true -- bracket matching
 vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.foldmethod = "indent" -- fold based on indent
-vim.opt.foldlevelstart = 99   -- but open them all by default
+vim.opt.foldlevelstart = 99 -- but open them all by default
+
+vim.o.completeopt = 'menuone,noselect,fuzzy,nosort'
+vim.lsp.completion.enable = true
 
 -- Spell checking
 vim.opt.spell = true
@@ -664,8 +482,10 @@ vim.keymap.set("n", "<leader>bo", function()
 	end
 end, { desc = "buffer only (close all others)" })
 
+vim.keymap.set("n", "<leader>tdf", "<cmd>:e ~/todo.txt<CR>", { desc = "ToDo file" })
+
 -- quickfix
-vim.keymap.set("n", "<leader>td", "<cmd>:Pick hipatterns<CR>", { desc = "Quickfix List" })
+vim.keymap.set("n", "<leader>tdl", "<cmd>:Pick hipatterns<CR>", { desc = "ToDo Quickfix" })
 vim.keymap.set("n", "<leader>ql", "<cmd>:copen<CR>", { desc = "Quickfix List" })
 vim.keymap.set("n", "<leader>qp", "<cmd>:cprevious<CR>zz", { desc = "Quickfix Previous" })
 vim.keymap.set("n", "<leader>qn", "<cmd>:cnext<CR>zz", { desc = "Quickfix Next" })

@@ -17,7 +17,7 @@
 ; [gpg]
 ;         format = ssh
 [core]
-	excludesfile = ~/dotfiles/gitWork/.gitignore
+	excludesfile = ~/dotfiles/git/.gitignore
 [diff]
         tool=nvim
 [credential]

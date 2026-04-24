@@ -134,11 +134,8 @@ alias ,pacUpdate="pacman -Syu"
 
 # bitwarden SSH keys
 export SSH_AUTH_SOCK=/home/$(whoami)/.bitwarden-ssh-agent.sock
-# # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
 
+# use fzf stuff in zsh
 source <(fzf --zsh)
 
 # ctrl+x ctrl+e edits current command
