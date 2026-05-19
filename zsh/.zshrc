@@ -29,7 +29,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 alias gpg2=gpg
 alias cdp="cd ~/Documents/Projects"
 alias acl="clear"
-alias venvactivate="source .venv/bin/activate"
 
 # Git aliases
 alias gdl="git diff HEAD^ HEAD"
@@ -84,8 +83,9 @@ alias flup="flatpak update && flatpak uninstall --unused"
 alias up="nup && hms && apup && flup"
 
 # Pip use virtualenv and install requirements
-alias ,pipreq="source ./venv/bin/activate && pip3 install -r requirements.txt"
-alias ,pipuse="python3 -m virtualenv venv && source ./venv/bin/activate"
+alias ,pipreq="uv pip install -r requirements.txt"
+alias ,pipuse='[ -d .venv ] || uv venv --python 3.13; source .venv/bin/activate'
+
 alias ,findFiles='v "$(rg --files --hidden ~ | fzf)"'
 
 # Mac wm stuff
@@ -143,6 +143,8 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
+export UV_ROOT="$HOME/.local/share/uv"
+[[ -d $PYENV_ROOT ]] && export PATH="$UV_ROOT/python:$PATH"
 
 cat ~/todo.txt
 

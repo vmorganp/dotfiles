@@ -482,7 +482,7 @@ vim.keymap.set("n", "<leader>bo", function()
 	end
 end, { desc = "buffer only (close all others)" })
 
-vim.keymap.set("n", "<leader>tdf", "<cmd>:e ~/todo.txt<CR>", { desc = "ToDo file" })
+vim.keymap.set("n", "<leader>tdf", "<cmd>:e ~/todo.md<CR>", { desc = "ToDo file" })
 
 -- quickfix
 vim.keymap.set("n", "<leader>tdl", "<cmd>:Pick hipatterns<CR>", { desc = "ToDo Quickfix" })
