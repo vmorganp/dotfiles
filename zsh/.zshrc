@@ -129,8 +129,10 @@ export AWS_PAGER=""
 
 # pacman
 alias ,pacInstall="sudo pacman -Sy"
+alias ,pacUninstall="sudo pacman -Rns"
 alias ,pacSearch="pacman -Ss"
-alias ,pacUpdate="pacman -Syu"
+alias ,pacUpdate="sudo pacman -Syu"
+alias ,pacUpdateDiscord="sudo pacman -Sy extra/discord"
 
 # bitwarden SSH keys
 export SSH_AUTH_SOCK=/home/$(whoami)/.bitwarden-ssh-agent.sock
